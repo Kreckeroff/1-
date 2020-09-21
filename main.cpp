@@ -487,13 +487,17 @@ int main(){
         }
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         switch(q){
-            case 0 : exit(0);
-            case 1 : day1;
+            case 1 : {
+                day1();
+            }
             case 2 :  {
                 cout<<"soon";
+                
             }
+            case 0 : exit(0);
+                
         }
         
     }
-    day1();
+    
 }
