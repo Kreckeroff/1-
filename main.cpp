@@ -456,12 +456,10 @@ void day1() {
 }
 int main(){
     setlocale(LC_ALL, "Russian");
-    int q = 0;
-    int m = 0;
-    int M = 5;
-    cin.clear();
-    cout << "Для просмотра заданий введите номер задания (1-5)" << endl;
-    cout << endl;
+    int q ;
+    //int m = 0;
+    //int M = 5;
+    cout << "Для просмотра заданий введите номер задания (1-5) \n \n";
     cout << "№1 - задания \1 недели \n";
     cout << "№2 - задания \2 недели \n";
     /*cout << "№3 - задание \"Уравнение\" \n";
@@ -469,8 +467,9 @@ int main(){
     cout << "№5 - задание \"Лампа со шторой\" \n\n";
      */
     cout << "№0 - выйти из программы \n";
-    for (;;) {
-        float valuea;
+    cin >> q;
+   /* for (;;) {
+        int valuea;
         cout<<"Введите задание. \n";
         if ((cin >> valuea).good() && (m <= valuea) && (valuea <= M)){
             q = valuea;
@@ -485,7 +484,7 @@ int main(){
             cout << "Число вне допустимого диапазона значений. Повторите ввод. \n";
             
         }
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');*/
         switch(q){
             case 1 : {
                 day1();
@@ -498,6 +497,4 @@ int main(){
                 
         }
         
-    }
-    
 }
