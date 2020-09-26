@@ -16,12 +16,12 @@ int main(int argc, const char * argv[]) {
     for(int i = 0; i < 17; i++) {
         if(x - 1 != 0){
             result =(pow(x,2) - 2 * x + 2)/(x - 1);
-            cout<< "результат для x = "<< x << endl <<"равен:"<< result<<endl<<endl;
+            cout<< "результат для x = "<< x << endl <<"равен: "<< result<<endl<<endl;
             
         }
         try {
             if (x - 1 == 0){
-                throw 123;
+                throw 150;
                 
             }
             
