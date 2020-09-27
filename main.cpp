@@ -62,7 +62,6 @@ void day1() {
 F1:
     int m = 0;
     int M = 5;
-    int t = Inputint(m,M);
     cin.clear();
     cout << "Для просмотра заданий введите номер задания (1-5)" << endl;
     cout << endl;
@@ -72,6 +71,7 @@ F1:
     cout << "№4 - задание \"Ещё уравнение\" \n";
     cout << "№5 - задание \"Лампа со шторой\" \n\n";
     cout << "№0 - выйти из программы \n";
+    int t = Inputint(m,M);
     /*for (;;) {
         float valuea;
         cout<<"Введите задание. \n";
@@ -299,10 +299,14 @@ F1:
         case 3:{
         F3:
             cout <<"эта программа находит значение x в уравнениях типа bx + c = 0"<<endl;
-            float  c,b, x = 0;
+            float x = 0;
             int m = -2147483648;
             int M = 2147483647;
-            for (;;) {
+            cout<<"Введите число 'b' \n";
+            float b = Inputfloat(m,M);
+            cout<<"Введите число 'c' \n";
+            float c = Inputfloat(m,M);
+          /*  for (;;) {
                 float valuea;
                 cout<<"Введите значение переменной b. \n";
                 if ((cin >> valuea).good() && (m <= valuea) && (valuea <= M)){
@@ -341,7 +345,7 @@ F1:
                 }
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 
-            }
+            }*/
             try {
                 if (b == 0 and c != 0){
                     throw 130;
@@ -367,10 +371,16 @@ F1:
         case 4:{
         F4:
             cout<<"Данная программа находит значение x в уравнениях типа ax^2 + bx + c = 0 \n" ;
-            float a,b,c,d,x1,x2;
+            float d,x1,x2;
             int m = -2147483648;
             int M = 2147483647;
-            for (;;) {
+            cout<<"Введите число 'a' \n";
+            float a = Inputfloat(m,M);
+            cout<<"Введите число 'b' \n";
+            float b = Inputfloat(m,M);
+            cout<<"Введите число 'c' \n";
+            float c = Inputfloat(m,M);
+          /*  for (;;) {
                 float valuea;
                 cout<<"Введите значение переменной а. \n";
                 if ((cin >> valuea).good() && (m <= valuea) && (valuea <= M)){
@@ -430,6 +440,7 @@ F1:
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 
             }
+           */
             if(a == 0) {
                 try {
                     if (b == 0 and c != 0) {
@@ -502,7 +513,6 @@ F1:
 }
 void day2(){
 F1:
-    int t;
     int m = 0;
     int M = 5;
     std::cout << "Для просмотра заданий введите номер задания (1-5)" << endl;
@@ -513,7 +523,8 @@ F1:
     cout << "№4 - задание \"Порядок\" \n";
     cout << "№5 - задание \"Табуляция\" \n\n";
     cout << "№0 - выйти из программы \n";
-    for (;;) {
+    int t = Inputint(m,M);
+    /*for (;;) {
         float valuea;
         cout<<"Введите задание. \n";
         if ((cin >> valuea).good() && (m <= valuea) && (valuea <= M)){
@@ -531,13 +542,21 @@ F1:
         }
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         
-    }
+    }*/
     switch(t){
         case 1:{
             cout<<"Данная программа считает объем и полную поверхность усеченного конуса"<<endl;
             int m = 0, M = 2147483647;
-            double V, S, h, R, r, l;
-            for (;;) {
+            double V, S;
+            cout<<"Введите число 'h' \n";
+            float h = Inputfloat(m,M);
+            cout<<"Введите число 'l' \n";
+            float l = Inputfloat(m,M);
+            cout<<"Введите число 'a' \n";
+            float R = Inputfloat(m,M);
+            cout<<"Введите число 'b' \n";
+            float r = Inputfloat(m,M);
+           /* for (;;) {
                 float valuea;
                 cout<<"Введите значение для h. \n";
                 if ((cin >> valuea).good() && (m < valuea) && (valuea <= M)){
@@ -616,7 +635,7 @@ F1:
                 }
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     
-            }
+            }*/
             V = ((1/(3 * M_PI * h))*((pow(R,2) + R * r + pow(r,2))));
             S = M_PI * (pow(R,2) + (R + r)* l + pow(r,2));
             cout <<"Объем фигуры равен: \n";
@@ -629,8 +648,12 @@ F1:
         F2:
             cout<<"Данная программа считает систему уравнений \n";
             int m = -2147483648, M = 2147483647;
-            double a , x, result;
-            for (;;) {
+            float result;
+            cout<<"Введите число 'a' \n";
+            float a = Inputfloat(m,M);
+            cout<<"Введите число 'x' \n";
+            float x = Inputfloat(m,M);
+           /* for (;;) {
                 float valuea;
                 cout<<"Введите значение для x. \n";
                 if ((cin >> valuea).good() && (m <= valuea) && (valuea <= M)){
@@ -669,7 +692,7 @@ F1:
                 }
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     
-            }
+            }*/
             if (abs(x)< 1) {
                 if(x > 0) {
                     result = a*log(abs(x));
@@ -713,10 +736,16 @@ F1:
         }
         case 3: {
         F3:
-            cout<<"данная программа находить значение 'z' в уравнение \n";
+            cout<<"Данная программа находить значение 'z' в уравнение \n";
             int m = -2147483648, M = 2147483647;
-            double  b, result, y, x;
-            for (;;) {
+            float result;
+            cout<<"Введите число 'x' \n";
+            float x = Inputfloat(m,M);
+            cout<<"Введите число 'b' \n";
+            float b = Inputfloat(m,M);
+            cout<<"Введите число 'y' \n";
+            float y = Inputfloat(m,M);
+            /*for (;;) {
                 float valuea;
                 cout<<"Введите значение для x. \n";
                 if ((cin >> valuea).good() && (m <= valuea) && (valuea <= M)){
@@ -775,7 +804,7 @@ F1:
                 }
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     
-            }
+            }*/
             try {
                 if(b <= y and b < x) {
                     throw 232;
@@ -808,9 +837,9 @@ F1:
         }
         case 4: {
         F4:
-            float N;
             int m = 0, M = 2147483647;
-            for (;;) {
+            int N = Inputint(m,M);
+           /* for (;;) {
                 float valuea;
                 cout<<"Введите положительное значение для x. \n";
                 if ((cin >> valuea).good() && (m < valuea) && (valuea <= M)){
@@ -829,17 +858,7 @@ F1:
                 }
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     
-            }
-            try {
-                if(!(floor(N)==N))
-                    throw 240;
-                    
-            }
-            catch (int q) {
-            cout<<"Ошибка № "<<q<<" вы ввели не целое число \n";
-            goto F4;
-                    
-            }
+            }*/
             for(int i = 10 ; i > 0 ; i --) {
                 N++;
                 cout<< N << endl;
