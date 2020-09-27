@@ -833,7 +833,7 @@ F1:
 int main(){
     Z:
     setlocale(LC_ALL, "Russian");
-    int q ;
+    char q ;
     cout << "Для просмотра заданий введите номер задания (1-5) \n \n";
     cout << "№1 - задания 1 недели \n";
     cout << "№2 - задания 2 недели \n";
@@ -844,17 +844,17 @@ int main(){
     cout << "№0 - выйти из программы \n";
     cin >> q;
     switch(q){
-        case 1 : {
+        case '1' : {
             day1();
             goto Z;
             
         }
-        case 2 : {
+        case '2' : {
             day2();
             goto Z;
                 
         }
-        case 0 : exit(0);
+        case '0' : exit(0);
         default: {
             cout<<"неверный ввод"<<endl;
             goto Z;
