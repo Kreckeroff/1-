@@ -11,13 +11,58 @@
 #include <string>
 using namespace std;
 
+int return1(float a){
+    return a;
+}
 
+int Inputint(int m, int M) {
+    for (;;) {
+        float valuea;
+        cout<<"Введите число. \n";
+        if ((cin >> valuea).good() && (m <= valuea) && (valuea <= M)&&(floor(valuea)==valuea)){
+            return valuea;
+            break;
+        }
+        if (cin.fail()) {
+            cin.clear();
+            cout << "Неверный ввод, повторите. \n";
+            
+        }
+        else {
+            cout << "Число вне допустимого диапазона значений. Повторите ввод. \n";
+            
+        }
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        
+    }
+}
+int Inputfloat(int m, int M) {
+    for (;;) {
+        float valuea;
+        cout<<"Введите число. \n";
+        if ((cin >> valuea).good() && (m <= valuea) && (valuea <= M)){
+            return valuea;
+            break;
+        }
+        if (cin.fail()) {
+            cin.clear();
+            cout << "Неверный ввод, повторите. \n";
+            
+        }
+        else {
+            cout << "Число вне допустимого диапазона значений. Повторите ввод. \n";
+            
+        }
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        
+    }
+}
 
 void day1() {
 F1:
-    int t;
     int m = 0;
     int M = 5;
+    int t = Inputint(m,M);
     cin.clear();
     cout << "Для просмотра заданий введите номер задания (1-5)" << endl;
     cout << endl;
@@ -27,7 +72,7 @@ F1:
     cout << "№4 - задание \"Ещё уравнение\" \n";
     cout << "№5 - задание \"Лампа со шторой\" \n\n";
     cout << "№0 - выйти из программы \n";
-    for (;;) {
+    /*for (;;) {
         float valuea;
         cout<<"Введите задание. \n";
         if ((cin >> valuea).good() && (m <= valuea) && (valuea <= M)){
@@ -45,7 +90,7 @@ F1:
         }
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         
-    }
+    }*/
     switch(t){
         case 1:{
             cout <<"Данная программа спрашивает имя пользователя и выводит его на экран. \n";
@@ -60,13 +105,13 @@ F1:
         case 2:{
         F2:
             cout<<"Данная программа решает простые арифметические действия. \n";
-            float  c = 0,a,b;
+            float  c = 0;
             char sign;
-            int n;
-            setlocale(LC_ALL, "Russian");
-            int m = -2147483648;
-            int M = 2147483647;
-            for (;;) {
+            int n, m = -2147483648, M = 2147483647;
+            float a = Inputfloat(m, M);
+            cout<<a;
+            float b = Inputfloat(m, M);
+           /* for (;;) {
                 float valuea;
                 cout<<"Введите значение переменной а. \n";
                 if ((cin >> valuea).good() && (m <= valuea) && (valuea <= M)){
@@ -105,7 +150,7 @@ F1:
                 }
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 
-            }
+            }*/
             cout <<" Введите '+', чтобы посчитать a + b = c. \n Введите '-', чтобы посчитать a - b = c. \n Введите '*', чтобы посчитать a * b = c. \n Введите '+/', чтобы посчитать a / b = c. \n Напишите '0' чтобы выйти из программы в меню. \n";
             cin >> sign;
             try {
@@ -393,12 +438,12 @@ F1:
                     
                 }
                 catch (int q){
-                    cout<< "результат будет недействителен, "<<"Ошибка № "<<q<<" - на 0 делить нельзя!"<<endl;
+                    cout<< "результат будет недействителен, "<<"Ошибка № "<<q<<" - на 0 делить нельзя! \n"<<endl;
                     goto F4;
                     
                 }
                 if( b == 0 and c == 0) {
-                    cout<<"x может принимать любые значения"<<endl;
+                    cout<<"x может принимать любые значения \n"<<endl;
                     goto F1;
                     
                 }
@@ -421,7 +466,7 @@ F1:
                 
             }
             if (d < 0)
-                cout << "D < 0, Действительных корней не существует";
+                cout << "D < 0, Действительных корней не существует \n";
             goto F1;
             
         }
@@ -430,7 +475,7 @@ F1:
             int lamp;
             int sun;
             int curtain;
-            cout<<"эта программа определяет светло или темно в комнате"<<endl;
+            cout<<"эта программа определяет светло или темно в комнате \n";
             cout << "введите первым действием работает ли лампа, вторым открыты или закрыты шторы,последним светло или темно на улице, 1 вариант ответа принимается под цифрой 1, второй под цифрой 0\n";
             cin >>lamp>>curtain>>sun;
             try {
