@@ -846,10 +846,12 @@ int main(){
     switch(q){
         case 1 : {
             day1();
+            goto Z;
             
         }
         case 2 : {
             day2();
+            goto Z;
                 
         }
         case 0 : exit(0);
