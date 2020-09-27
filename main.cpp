@@ -36,7 +36,7 @@ int Inputint(int m, int M) {
         
     }
 }
-int Inputfloat(int m, int M) {
+double Inputfloat(int m, int M) {
     for (;;) {
         float valuea;
         cout<<"Введите число. \n";
@@ -108,8 +108,9 @@ F1:
             float  c = 0;
             char sign;
             int n, m = -2147483648, M = 2147483647;
+            cout<<"Введите число a \n";
             float a = Inputfloat(m, M);
-            cout<<a;
+            cout<<"Введите число b \n";
             float b = Inputfloat(m, M);
            /* for (;;) {
                 float valuea;
@@ -694,7 +695,7 @@ F1:
             else
                 try {
                     if( a < pow(x, 2)){
-                        throw 220;
+                        throw 221;
                             
                     }
                         
@@ -898,6 +899,10 @@ int main(){
             day2();
             goto Z;
                 
+        }
+        case '3' : {
+            cout<<"soon \n";
+            
         }
         case '0' : exit(0);
         default: {
