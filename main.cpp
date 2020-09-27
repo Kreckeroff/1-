@@ -14,7 +14,7 @@ using namespace std;
 
 
 void day1() {
-    F:
+F1:
     int t;
     int m = 0;
     int M = 5;
@@ -54,11 +54,11 @@ void day1() {
             cout << "What is your name? ";
             cin>> name;
             cout << "Hello, " << name << "!\n";
-           goto F ;
+           goto F1;
 
         }
         case 2:{
-        M:
+        F2:
             cout<<"Данная программа решает простые арифметические действия. \n";
             float  c = 0,a,b;
             char sign;
@@ -115,7 +115,7 @@ void day1() {
             }
             catch (int q) {
                 cout<<"Ошибка № "<<q<<"! Вы ввели неправильно знак. Вас вернут обратно в программу\n";
-                goto F;
+                goto F2;
                         
             }
             switch(sign) {
@@ -131,16 +131,16 @@ void day1() {
                         
                     }
                     catch (int y) {
-                        cout<<"Ошибка № "<<y<<"! Вы ввели не 1 или 0.\n";
+                        cout<<"Ошибка № "<<y<<"! Вы ввели не 1 или 0.Вас вернут в меню выбора \n";
                         goto R1;
                         
                     }
                     if (n == 1) {
-                        goto M;
+                        goto F2;
                         
                     }
                     else
-                        goto F;
+                        goto F1;
                     
                 }
                 case'-': {
@@ -160,11 +160,11 @@ void day1() {
                         
                     }
                     if (n == 1) {
-                        goto M;
+                        goto F2;
                         
                     }
                     else
-                        goto F;
+                        goto F1;
                     
                 }
                 case'*': {
@@ -184,11 +184,11 @@ void day1() {
                         
                     }
                     if (n == 1) {
-                        goto M;
+                        goto F2;
                         
                     }
                     else
-                        goto F;
+                        goto F1;
                             
                 }
                 case'/': {
@@ -212,11 +212,11 @@ void day1() {
                             
                         }
                         if (n == 1) {
-                            goto M;
+                            goto F2;
                             
                         }
                         else
-                            goto F;
+                            goto F1;
                         
                     }
                     c = a / b;
@@ -231,19 +231,19 @@ void day1() {
                     }
                     catch (int y) {
                         cout<<"Ошибка № "<<y<<"! вы ввели не 1 или 0. \n";
-                        goto R5;
+                        goto F1;
                         
                     }
                     if (n == 1) {
-                        goto M;
+                        goto F2;
                         
                     }
                     else
-                        goto F;
+                        goto F1;
                         
                 }
                 case'0': {
-                    goto F;
+                    goto F1;
                     
                 }
                     
@@ -251,7 +251,7 @@ void day1() {
             
         }
         case 3:{
-        J:
+        F3:
             cout <<"эта программа находит значение x в уравнениях типа bx + c = 0"<<endl;
             float  c,b, x = 0;
             int m = -2147483648;
@@ -305,21 +305,21 @@ void day1() {
             }
             catch (int q){
                 cout<< "результат будет недействителен, "<<"Ошибка № "<<q<<" - на 0 делить нельзя!"<<endl;
-                goto J;
+                goto F3;
                 
             }
             if( b == 0 and c == 0){
                 cout<<"x может принимать любые значения"<<endl;
-                goto F;
+                goto F1;
                 
             }
             x = (-c)/b;
             cout <<"x = "<<x<<endl;
-            goto F;
+            goto F1;
             
         }
         case 4:{
-        Q:
+        F4:
             cout<<"Данная программа находит значение x в уравнениях типа ax^2 + bx + c = 0 \n" ;
             float a,b,c,d,x1,x2;
             int m = -2147483648;
@@ -394,17 +394,17 @@ void day1() {
                 }
                 catch (int q){
                     cout<< "результат будет недействителен, "<<"Ошибка № "<<q<<" - на 0 делить нельзя!"<<endl;
-                    goto Q;
+                    goto F4;
                     
                 }
                 if( b == 0 and c == 0) {
                     cout<<"x может принимать любые значения"<<endl;
-                    goto F;
+                    goto F1;
                     
                 }
                 x1 = (-c)/b;
                 cout <<"x1 = "<<x1<<endl;
-                goto F;
+                goto F1;
                 
             }
             d = pow(b,2) - 4 * a * c;
@@ -422,11 +422,11 @@ void day1() {
             }
             if (d < 0)
                 cout << "D < 0, Действительных корней не существует";
-            goto F;
+            goto F1;
             
         }
         case 5: {
-        W:
+        F5:
             int lamp;
             int sun;
             int curtain;
@@ -440,39 +440,38 @@ void day1() {
             }
             catch(int q){
                 cout<<"вы ввели неправильное значение переменных "<<"Ошибка № "<<q<<" допустим ввод только цифр 1/0"<<endl;
-                goto W;
+                goto F5;
                 
             }
             if (lamp == 1 or (curtain == 1 and sun == 1))
                 cout << "в комнате светло\n";
             else
                 cout << "в комнате темно\n";
-            goto F;
+            goto F1;
             
         }
             
     }
     
 }
-int main(){
-    setlocale(LC_ALL, "Russian");
-    int q ;
-    //int m = 0;
-    //int M = 5;
-    cout << "Для просмотра заданий введите номер задания (1-5) \n \n";
-    cout << "№1 - задания \1 недели \n";
-    cout << "№2 - задания \2 недели \n";
-    /*cout << "№3 - задание \"Уравнение\" \n";
-    cout << "№4 - задание \"Ещё уравнение\" \n";
-    cout << "№5 - задание \"Лампа со шторой\" \n\n";
-     */
+void day2(){
+F1:
+    int t;
+    int m = 0;
+    int M = 5;
+    std::cout << "Для просмотра заданий введите номер задания (1-5)" << endl;
+    cout << endl;
+    cout << "№1 - задание \"Конус\"\n";
+    cout << "№2 - задание \"Разветвление\" \n";
+    cout << "№3 - задание \"Функция\" \n";
+    cout << "№4 - задание \"Порядок\" \n";
+    cout << "№5 - задание \"Табуляция\" \n\n";
     cout << "№0 - выйти из программы \n";
-    cin >> q;
-   /* for (;;) {
-        int valuea;
+    for (;;) {
+        float valuea;
         cout<<"Введите задание. \n";
         if ((cin >> valuea).good() && (m <= valuea) && (valuea <= M)){
-            q = valuea;
+            t = valuea;
             break;
         }
         if (cin.fail()) {
@@ -484,17 +483,382 @@ int main(){
             cout << "Число вне допустимого диапазона значений. Повторите ввод. \n";
             
         }
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');*/
-        switch(q){
-            case 1 : {
-                day1();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        
+    }
+    switch(t){
+        case 1:{
+            cout<<"Данная программа считает объем и полную поверхность усеченного конуса"<<endl;
+            int m = 0, M = 2147483647;
+            double V, S, h, R, r, l;
+            for (;;) {
+                float valuea;
+                cout<<"Введите значение для h. \n";
+                if ((cin >> valuea).good() && (m < valuea) && (valuea <= M)){
+                    h = valuea;
+                    break;
+                        
+                }
+                if (cin.fail()) {
+                    cin.clear();
+                    cout << "Неверный ввод, повторите. \n";
+                        
+                }
+                else {
+                    cout << "Число вне допустимого диапазона значений. Повторите ввод. \n";
+                        
+                }
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    
             }
-            case 2 :  {
-                cout<<"soon";
+            for (;;) {
+                float valuea;
+                cout<<"Введите значение переменной l. \n";
+                if ((cin >> valuea).good() && (m < valuea) && (valuea <= M)){
+                    l = valuea;
+                    break;
+                        
+                }
+                if (cin.fail()) {
+                    cin.clear();
+                    cout << "Неверный ввод, повторите. \n";
+                        
+                }
+                else {
+                    cout << "Число вне допустимого диапазона значений. Повторите ввод. \n";
+                        
+                }
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    
+            }
+            for (;;) {
+                float valuea;
+                cout<<"Введите значение переменной R. \n";
+                if ((cin >> valuea).good() && (m < valuea) && (valuea <= M)){
+                    R = valuea;
+                    break;
+                        
+                }
+                if (cin.fail()) {
+                    cin.clear();
+                    cout << "Неверный ввод, повторите. \n";
+                        
+                }
+                else {
+                    cout << "Число вне допустимого диапазона значений. Повторите ввод. \n";
+                        
+                }
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    
+            }
+            for (;;) {
+                float valuea;
+                cout<<"Введите значение переменной r. \n";
+                if ((cin >> valuea).good() && (m < valuea) && (valuea <= M)){
+                    r = valuea;
+                    break;
+                        
+                }
+                if (cin.fail()) {
+                    cin.clear();
+                    cout << "Неверный ввод, повторите. \n";
+                        
+                }
+                else {
+                    cout << "Число вне допустимого диапазона значений. Повторите ввод. \n";
+                        
+                }
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    
+            }
+            V = ((1/(3 * M_PI * h))*((pow(R,2) + R * r + pow(r,2))));
+            S = M_PI * (pow(R,2) + (R + r)* l + pow(r,2));
+            cout <<"Объем фигуры равен: \n";
+            cout << V << endl;
+            cout << "полная поверхность фигуры равна: \n";
+            cout << S << endl;
+            goto F1;
+        }
+        case 2: {
+        F2:
+            cout<<"Данная программа считает систему уравнений \n";
+            int m = -2147483648, M = 2147483647;
+            double a , x, result;
+            for (;;) {
+                float valuea;
+                cout<<"Введите значение для x. \n";
+                if ((cin >> valuea).good() && (m <= valuea) && (valuea <= M)){
+                    x = valuea;
+                    break;
+                        
+                }
+                if (cin.fail()) {
+                    cin.clear();
+                    cout << "Неверный ввод, повторите. \n";
+                        
+                }
+                else {
+                    cout << "Число вне допустимого диапазона значений. Повторите ввод. \n";
+                        
+                }
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    
+            }
+            for (;;) {
+                float valuea;
+                cout<<"Введите значение для a. \n";
+                if ((cin >> valuea).good() && (m <= valuea) && (valuea <= M)){
+                    a = valuea;
+                    break;
+                        
+                }
+                if (cin.fail()) {
+                    cin.clear();
+                    cout << "Неверный ввод, повторите. \n";
+                        
+                }
+                else {
+                    cout << "Число вне допустимого диапазона значений. Повторите ввод. \n";
+                        
+                }
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    
+            }
+            if (abs(x)< 1) {
+                if(x > 0) {
+                    result = a*log(abs(x));
+                    cout <<"W = "<<result<<endl;
+                    goto F1;
+                        
+                }
+                else {
+                    try {
+                        if(x <= 0)
+                            throw 220;
+                            
+                    }
+                    catch (int q) {
+                        cout<<"Ошибка № "<<q<<" логарифм не может быть отрицательным или равен 0 \n";
+                        goto F2;
+                            
+                    }
+                    
+                }
                 
             }
-            case 0 : exit(0);
+            else
+                try {
+                    if( a < pow(x, 2)){
+                        throw 220;
+                            
+                    }
+                        
+                }
+                catch (int q) {
+                    cout<<"Ошибка № "<<q<<" под корнем не может быть отрицательное число \n"<<endl;
+                    goto F2;
+                    
+            }
+            result = sqrt(a - pow(x, 2));
+            cout << "W = ";
+            cout << result << endl;
+            goto F1;
+            
+        }
+        case 3: {
+        F3:
+            cout<<"данная программа находить значение 'z' в уравнение \n";
+            int m = -2147483648, M = 2147483647;
+            double  b, result, y, x;
+            for (;;) {
+                float valuea;
+                cout<<"Введите значение для x. \n";
+                if ((cin >> valuea).good() && (m <= valuea) && (valuea <= M)){
+                    x = valuea;
+                    break;
+                        
+                }
+                if (cin.fail()) {
+                    cin.clear();
+                    cout << "Неверный ввод, повторите. \n";
+                        
+                }
+                else {
+                    cout << "Число вне допустимого диапазона значений. Повторите ввод. \n";
+                        
+                }
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    
+            }
+            for (;;) {
+                float valuea;
+                cout<<"Введите значение для y. \n";
+                if ((cin >> valuea).good() && (m <= valuea) && (valuea <= M)){
+                    y = valuea;
+                    break;
+                        
+                }
+                if (cin.fail()) {
+                    cin.clear();
+                    cout << "Неверный ввод, повторите. \n";
+                        
+                }
+                else {
+                    cout << "Число вне допустимого диапазона значений. Повторите ввод. \n";
+                        
+                }
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    
+            }
+            for (;;) {
+                float valuea;
+                cout<<"Введите значение для b. \n";
+                if ((cin >> valuea).good() && (m <= valuea) && (valuea <= M)){
+                    b = valuea;
+                    break;
+                        
+                }
+                if (cin.fail()) {
+                    cin.clear();
+                    cout << "Неверный ввод, повторите. \n";
+                        
+                }
+                else {
+                    cout << "Число вне допустимого диапазона значений. Повторите ввод. \n";
+                        
+                }
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    
+            }
+            try {
+                if(b <= y and b < x) {
+                    throw 232;
+                        }
+                    
+                if(b < x ) {
+                    throw 230;
+                        
+                }
+                if(b <= y) {
+                    throw 231;
+                        
+                }
+                    
+            }
+            catch (int q) {
+                if( q == 230)
+                    cout<<"Ошибка № "<<q<< " под корнем не может быть отрицательное число"<< endl;
+                else if(q == 231)
+                    cout<<"Ошибка №"<<q<<" логарифм не определен"<< endl;
+                else
+                    cout<<"Ошибка № "<<q<< " под корнем не может быть отрицательное число и логарифм не определен"<< endl;
+                goto F3;
+                    
+            }
+            result = log(b - y) * sqrt(b - x);
+            cout << "z = "<< result << endl;
+            goto F1;
+            
+        }
+        case 4: {
+        F4:
+            float N;
+            int m = 0, M = 2147483647;
+            for (;;) {
+                float valuea;
+                cout<<"Введите положительное значение для x. \n";
+                if ((cin >> valuea).good() && (m < valuea) && (valuea <= M)){
+                    N = valuea;
+                    break;
+                        
+                }
+                if (cin.fail()) {
+                    cin.clear();
+                    cout << "Неверный ввод, повторите. \n";
+                        
+                }
+                else {
+                    cout << "Число вне допустимого диапазона значений. Повторите ввод. \n";
+                        
+                }
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    
+            }
+            try {
+                if(!(floor(N)==N))
+                    throw 240;
+                    
+            }
+            catch (int q) {
+            cout<<"Ошибка № "<<q<<" вы ввели не целое число \n";
+            goto F4;
+                    
+            }
+            for(int i = 10 ; i > 0 ; i --) {
+                N++;
+                cout<< N << endl;
+                        
+            }
+            goto F1;
+        }
+        case 5: {
+            double x = -4;
+            double result;
+            for(int i = 0; i < 17; i++) {
+                if(x - 1 != 0){
+                    result =(pow(x,2) - 2 * x + 2)/(x - 1);
+                    cout<< "результат для x = "<< x << endl <<"равен: "<< result<<endl<<endl;
+                    
+                }
+                try {
+                    if (x - 1 == 0){
+                        throw 250;
+                        
+                    }
+                    
+                }
+                catch(int q) {
+                    cout <<"результат для x = 1\n"<<"Ошибка №" << q << " - на 0 делить нельзя!!!!" <<endl<<endl;
+                    
+                }
+                x = x + 0.5;
+                
+            }
+            goto F1;
+        }
+    }
+}
+
+    
+int main(){
+    Z:
+    setlocale(LC_ALL, "Russian");
+    int q ;
+    cout << "Для просмотра заданий введите номер задания (1-5) \n \n";
+    cout << "№1 - задания 1 недели \n";
+    cout << "№2 - задания 2 недели \n";
+    cout << "№3 - задания 3 недели \n";
+/*  cout << "№4 - задание \"Ещё уравнение\" \n";
+    cout << "№5 - задание \"Лампа со шторой\" \n\n";
+     */
+    cout << "№0 - выйти из программы \n";
+    cin >> q;
+    switch(q){
+        case 1 : {
+            day1();
+            
+        }
+        case 2 : {
+            day2();
                 
         }
+        case 0 : exit(0);
+        default: {
+            cout<<"неверный ввод"<<endl;
+            goto Z;
+            
+        }
+            
+    }
         
 }
