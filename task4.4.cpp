@@ -12,15 +12,23 @@ int main(int argc, const char * argv[]) {
     int y = 0;
     bool q = true;
     do {
-        if ( y < 6) {
+        if ( y < 6 ) {
             for(int i = 0; i < 8; i++) {
                 std::cout<<"*";
                 
             }
-            for(int i = 7; i < 30; i++){
-                std::cout<<"-";
+            if(y == 1 or y == 3 or y == 5){
+                for(int i = 7; i < 30; i++){
+                    std::cout<<" ";
+                    
+                }
                 
             }
+            else
+                for(int i = 7; i < 30; i++) {
+                    std::cout<<"-";
+                    
+                }
             if (y <= 6){
                 std::cout<<"\n";
                 y++;
@@ -29,10 +37,18 @@ int main(int argc, const char * argv[]) {
             
         }
         else if(y >= 6 and y < 13){
-            for(int i = 0; i < 31; i++){
-                std::cout<<"-";
+            if(y == 7 or y == 9 or y == 11 or y == 13){
+                for(int i = 0; i < 31; i++){
+                    std::cout<<" ";
+                    
+                }
                 
             }
+            else
+                for(int i = 0; i < 31; i++){
+                    std::cout<<"-";
+                    
+                }
             std::cout<<"\n";
             y++;
             
