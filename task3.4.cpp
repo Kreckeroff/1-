@@ -41,17 +41,11 @@ int main(int argc, const char * argv[]) {
         result[j++] = buff[i];
     std::cout << buff;
     text.close();
-    /*sort(result,50);
-    while(*result != '\0'){
-        if(result[i] =='0' or result[i] =='1' or result[i] =='2' or result[i] =='3' or result[i] =='4' or result[i] =='5' or result[i] =='6' or result[i] =='7' or result[i] =='8' or result[i] =='9'){
-            std::cout<<result[i]<<std::endl;
-            i++;
-        }
-        else{
-            break;
-        }
-    }*/
-    std::cout<<result<<std::endl;
+   for (int i=0; i<50;i++){
+       if ((buff[i]>47&&buff[i]<58)||buff[i]==32)
+           std::cout<<buff[i];
+   }
+    std::cout<<'\n';
     
     return 0;
     
