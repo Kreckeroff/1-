@@ -19,8 +19,12 @@ int area1(int x,int y){
     return result;
     
 }
+float area22(int x, int y){
+    float result = x * y * 0.5;
+    return result;
+}
 //Функция для определения площади по формуле Герона у треугольника
-float area2(int x, int y, int z){
+float area21(int x, int y, int z){
     float p = (x + y + z) * 0.5;
     float result = sqrt(p*(p - x) * ( p - y ) * (p - z));
     return result;
@@ -718,13 +722,43 @@ void day4(){
                             break;
                             
                         }
-                        case '2':{
-                            std::cout<<"Вы выбрали площадь для треугольника \n Введите 3 стороны треугольника \n";
-                            int x = Inputint(m, M);
-                            int y = Inputint(m, M);
-                            int z = Inputint(m, M);
-                            float result = area2(x, y, z);
-                            std::cout<<"Площадь треугольника = "<<result<<std::endl;
+                        case '2': {
+                            bool qwert = true;
+                            do {
+                                std::cout<<"Вы выбрали площадь для треугольника \n";
+                                std::cout<<"Выберите способ подсчета площади треугольника : \n 1. Формула Герона, вам нужно знать длины 3-ех сторон \n 2. Формула высоты на основание, вам нужно знать длину основания и высоты падающей на нее \n \n 0. Выйти из подпрограммы \n";
+                                char f;
+                                std::cin >>f;
+                                switch(f) {
+                                    case '1': {
+                                        std::cout<<"Вы выбрали формулу Герона, введите длины 3-ех сторон \n";
+                                        int x = Inputint(m, M);
+                                        int y = Inputint(m, M);
+                                        int z = Inputint(m, M);
+                                        float result = area21(x, y, z);
+                                        std::cout<<"Площадь треугольника = "<<result<<std::endl;
+                                        break;
+                                    }
+                                    case '2': {
+                                        std::cout<<"Вы выбрали формулу высоты на основание, введите длину основания и падающей на нее высоты \n";
+                                        int x = Inputint(m, M);
+                                        int y = Inputint(m, M);
+                                        float result = area22(x, y);
+                                        std::cout<<"Площадь треугольника = "<<result<<std::endl;
+                                        break;
+                                    }
+                                    case '0': {
+                                        std::cout<<"Выход из подпрограммы... \n";
+                                        qwert = false;
+                                        continue;
+                                    }
+                                    default: {
+                                        std::cout<<"Неверный ввод, попробуйте снова \n";
+                                    }
+                                        
+                                }
+                                
+                            } while(qwert);
                             break;
                             
                         }
