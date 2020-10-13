@@ -12,6 +12,36 @@
 #include <fstream>
 using namespace std;
 
+int area1(int x,int y){
+    
+    int result = x * y;
+    return result;
+    
+}
+float area2(int x, int y, int z){
+    float p = (x + y + z) * 0.5;
+    float result = sqrt(p*(p - x) * ( p - y ) * (p - z));
+    return result;
+    
+}
+float area3(int x){
+    float result = M_PI * pow(x,2);
+    return result;
+}
+
+int sign_x(int x){
+    if(x > 0){
+        return 1;
+        
+    }
+    else if (x < 0){
+        return -1;
+        
+    }
+    else
+        return 0;
+}
+
 void sort(char *i, int n) {
     int a, b;
     char t;
@@ -601,7 +631,7 @@ void day3(){
 void day4(){
     int m = 0;
     int M = 9;
-    bool f = false;
+    bool f = true;
     do{
         std::cout << "Для просмотра заданий введите номер задания (1-5)" << endl;
         cout << endl;
@@ -612,30 +642,190 @@ void day4(){
         cout << "№5 - задание \"Синусоида\" \n\n";
         cout << "№6 - задание \"Автоматный распознаватель\" \n";
         cout << "№7 - задание \"Генератор случайных чисел\" \n";
-        cout << "№8 - задание \"Умножение матриц\" \n\n";
+        cout << "№8 - задание \"Умножение матриц\" \n";
         cout << "№9 - задание \"Системы счисления\" \n\n";
         cout << "№0 - выйти из программы \n";
         int t = Inputint(m,M);
         switch(t){
             case 1: {
+                char S1[256],S2[256], S3[256], S4[256], S5[256], S6[256], S7[256], S8[256], S9[256], S10[256];
+                std::cout << "Введите 10 чисел \n";
+                std::cout << "1: ";
+                std:: cin >> S1;
+                std:: cout << "2: ";
+                std:: cin >> S2;
+                std:: cout << "3: ";
+                std:: cin >> S3;
+                std:: cout << "4: ";
+                std:: cin >> S4;
+                std::cout << "5: ";
+                std:: cin >> S5;
+                std:: cout << "6: ";
+                std:: cin >> S6;
+                std:: cout << "7: ";
+                std:: cin >> S7;
+                std::cout << "8: ";
+                std::cin >> S8;
+                std:: cout << "9: ";
+                std:: cin >> S9;
+                std::cout << "10: ";
+                std::cin >> S10;
+
+                std::ofstream out("task4.1.txt");
+                out << S1 << '\n';
+                out << S2 << '\n';
+                out << S3 << '\n';
+                out << S4 << '\n';
+                out << S5 << '\n';
+                out << S6 << '\n';
+                out << S7 << '\n';
+                out << S8 << '\n';
+                out << S9 << '\n';
+                out << S10 << '\n';
+                out.close();
+                
+                std::ifstream in("task4.1.txt");
+                int s1,s2,s3,s4,s5,s6,s7,s8,s9,s10;
+                in>>s1>>s2>>s3>>s4>>s5>>s6>>s7>>s8>>s9>>s10;
+                std::cout<<s1+s2+s3+s4+s5+s6+s7+s8+s9+s10<<'\n';
                 break;
             
             }
             case 2: {
+                std::cout<<"Вы выбрали программу для определения знака у числа, введите число чтобы узнать какой у него знак \n";
+                int m = -2147483648, M = 2147483647;
+                int x = Inputint(m, M);
+                int result = sign_x(x);
+                std::cout<<result<<std::endl;
                 break;
             
             }
             case 3: {
+                std::cout<<"вы выбрали программу для подсчета площади у геометрических фигур \n";
+                bool q = true;
+                do {
+                    int m = 1, M = 2147483647;
+                    std::cout<<"Введите фигуру , у которой хотите посчитать площадь \n 1 = площадь прямоугольника \n 2 = площадь треугольника \n 3 = площадь круга \n 0 = выход из программы \n";
+                    char add;
+                    std::cin>>add;
+                    
+                    switch(add){
+                        case '1':{
+                            std::cout<<"Вы выбрали площадь для прямоугольника \n Введите 2 стороны прямоугольника \n";
+                            
+                            int x = Inputint(m, M);
+                            int y = Inputint(m, M);
+                            int result = area1(x, y);
+                            std::cout<<"Площадь прямоугольника = "<<result<<std::endl;
+                            break;
+                            
+                        }
+                        case '2':{
+                            std::cout<<"Вы выбрали площадь для треугольника \n Введите 3 стороны треугольника \n";
+                            int x = Inputint(m, M);
+                            int y = Inputint(m, M);
+                            int z = Inputint(m, M);
+                            float result = area2(x, y, z);
+                            std::cout<<"Площадь треугольника = "<<result<<std::endl;
+                            break;
+                            
+                        }
+                        case '3':{
+                            std::cout<<"Вы выбрали площадь для круга \n Введите радиус круга \n";
+                            int x = Inputint(m, M);
+                            float result = area3(x);
+                            std::cout<<"Площадь круга = "<<result<<std::endl;
+                            break;
+                            
+                        }
+                        case '0':{
+                            q = false;
+                            continue;
+                            
+                        }
+                        default:{
+                            std::cout<<"Неверный ввод, попробуйте еще раз. \n";
+                            
+                        }
+                            
+                    }
+                    
+                }while(q);
+                
                 break;
             
             }
             case 4: {
+                int y = 0;
+                bool q = true;
+                do {
+                    if ( y < 6 ) {
+                        for(int i = 0; i < 8; i++) {
+                            std::cout<<"*";
+                            
+                        }
+                        if(y == 1 or y == 3 or y == 5){
+                            for(int i = 7; i < 50; i++){
+                                std::cout<<" ";
+                                
+                            }
+                            
+                        }
+                        else
+                            for(int i = 7; i < 50; i++) {
+                                std::cout<<"-";
+                                
+                            }
+                        if (y <= 6){
+                            std::cout<<"\n";
+                            y++;
+                            
+                        }
+                        
+                    }
+                    else if(y >= 6 and y < 13){
+                        if(y == 7 or y == 9 or y == 11 or y == 13){
+                            for(int i = 0; i < 51; i++){
+                                std::cout<<" ";
+                                
+                            }
+                            
+                        }
+                        else
+                            for(int i = 0; i < 51; i++){
+                                std::cout<<"-";
+                                
+                            }
+                        std::cout<<"\n";
+                        y++;
+                        
+                    }
+                    else
+                        q = false;
+                    
+                } while(q);
+                
                 break;
             
             }
             case 5: {
+                for (double y = 1.1; y > -1.1; y-=0.1){
+                    for (double x = -4; x < 4; x+=0.1){
+                        if (abs(sin(x)-y)<0.05)
+                            std::cout<<"*";
+                        else if (x<0.05&&x>-0.05)
+                            std::cout<<"|";
+                        else if (y<0.05&&y>-0.05)
+                            std::cout<<"-";
+                        else
+                            std::cout<<" ";
+                        
+                    }
+                    std::cout<<'\n';
+                    
+                }
                 break;
-            
+                
             }
             case 6: {
                 break;
@@ -653,6 +843,16 @@ void day4(){
                 break;
                                
             }
+            case 0: {
+                std::cout<<"Выход из программы... \n";
+                f = false;
+                continue;
+                
+            }
+            default: {
+                std::cout<<"Неверный ввод, повторите снова. \n";
+                
+            }
                 
         }
         
@@ -665,7 +865,7 @@ int main() {
     setlocale(LC_ALL, "Russian");
     char q ;
     while(true) {
-        cout << "Для просмотра заданий введите номер задания (1-5) \n \n";
+        cout << "Для просмотра заданий введите номер задания (1-4) \n \n";
         cout << "№1 - задания 1 недели \n";
         cout << "№2 - задания 2 недели \n";
         cout << "№3 - задания 3 недели \n";
@@ -686,6 +886,11 @@ int main() {
             case '3' : {
                 day3();
                 break;
+            }
+            case '4' : {
+                day4();
+                break;
+                    
             }
             case '0' : exit(0);
             default: {
