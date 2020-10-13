@@ -12,23 +12,26 @@
 #include <fstream>
 using namespace std;
 
+//Функция для определения площади у прямоугольника
 int area1(int x,int y){
     
     int result = x * y;
     return result;
     
 }
+//Функция для определения площади по формуле Герона у треугольника
 float area2(int x, int y, int z){
     float p = (x + y + z) * 0.5;
     float result = sqrt(p*(p - x) * ( p - y ) * (p - z));
     return result;
     
 }
+//Функция для определения площади у круга
 float area3(int x){
     float result = M_PI * pow(x,2);
     return result;
 }
-
+//Функция для определения знака у введенного числа
 int sign_x(int x){
     if(x > 0){
         return 1;
@@ -41,7 +44,7 @@ int sign_x(int x){
     else
         return 0;
 }
-
+//Функция для сортировки введенной строки
 void sort(char *i, int n) {
     int a, b;
     char t;
@@ -57,7 +60,7 @@ void sort(char *i, int n) {
         }
     
 }
-
+//Функция ввода интовой переменной с клавиатуры с проверкой на введенные неккоректные символы с заданным диапазоном значений
 int Inputint(int m, int M) {
     for (;;) {
         float valuea;
@@ -79,6 +82,7 @@ int Inputint(int m, int M) {
         
     }
 }
+//Функция ввода float переменной с клавиатуры с проверкой на введенные неккоректные символы с заданным диапазоном значений
 double Inputfloat(int m, int M) {
     for (;;) {
         float valuea;
@@ -100,7 +104,7 @@ double Inputfloat(int m, int M) {
         
     }
 }
-
+//Вызов функции с заданиями 1 недели
 void day1() {
     bool a = true;
     int m = 0;
@@ -115,12 +119,12 @@ void day1() {
         cout << "№4 - задание \"Ещё уравнение\" \n";
         cout << "№5 - задание \"Лампа со шторой\" \n\n";
         cout << "№0 - выйти из программы \n";
-        int t = Inputint(m,M);
+        int t = Inputint(m,M); // Ввод int переменной с проверкой на число с типом данных int
         switch(t){
             case 1:{
                 cout <<"Данная программа спрашивает имя пользователя и выводит его на экран. \n";
-                setlocale(LC_ALL, "Russian");
-                string name;
+                setlocale(LC_ALL, "Russian");//установка русской локализации для вывода в консоли на русском
+                string name;//объявление строки
                 cout << "What is your name? ";
                 cin>> name;
                 cout << "Hello, " << name << "!\n";
@@ -128,7 +132,7 @@ void day1() {
 
             }
             case 2: {
-                bool f = false;
+                bool f = true;
                 do{
                     cout<<"Данная программа решает простые арифметические действия. \n";
                     float  c = 0;
@@ -140,17 +144,6 @@ void day1() {
                     float b = Inputfloat(m, M);
                     cout <<" Введите '+', чтобы посчитать a + b = c. \n Введите '-', чтобы посчитать a - b = c. \n Введите '*', чтобы посчитать a * b = c. \n Введите '+/', чтобы посчитать a / b = c. \n Напишите '0' чтобы выйти из программы в меню. \n";
                     cin >> sign;
-                    try {
-                        if(!(sign == '+' or sign == '-' or sign == '/' or sign == '*') and sign == 0)
-                            throw 120;
-                            
-                    }
-                    catch (int q) {
-                        cout<<"Ошибка № "<<q<<"! Вы ввели неправильно знак. Вас вернут обратно в программу\n";
-                        f = true;
-                        continue;
-                            
-                    }
                     switch(sign) {
                         case'+': {
                             c = a + b;
@@ -186,7 +179,12 @@ void day1() {
                             
                         }
                         case'0': {
-                            break;
+                            std::cout<<"Выход из программы... \n";
+                            f = false;
+                            continue;
+                        }
+                        default:{
+                            std::cout<<"Неверный ввод, попробуйте снова. \n";
                         }
                     }
                     
