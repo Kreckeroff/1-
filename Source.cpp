@@ -3,6 +3,7 @@
 #include <cmath>
 #include <string>
 #include <fstream>
+#include <Windows.h>
 #define M_PI 3.14159265358979323846
 using namespace std;
 
@@ -856,7 +857,100 @@ void day4() {
 
         }
         case 6: {
-            break;
+            std::cout << "Эта программа декодирует строку римской системы в арабскую систему \n Введите римскую числовую строку \n";
+                int result = 0, num[30], error1 = 0, error2 = 0, lenght, c;
+                char roman[30];
+                bool q = true;
+                do {
+                    result = 0;
+                    error1 = 0;
+                    error2 = 0;
+                    std::cin>>roman;
+                    lenght = e_strlen(roman);
+                    for (int i = 0; i < lenght; i++) {
+                        if (!((roman[i] == 'I') || (roman[i] == 'V') || (roman[i] == 'X') || (roman[i] == 'L') || (roman[i] == 'C') || (roman[i] == 'D') || (roman[i] == 'M'))) {
+                            error1++;
+                        }
+
+                    }
+                    for (int i = 3; i < lenght; i++) {
+                        if (roman[i] == roman[i - 1] && roman[i] == roman[i - 2] && roman[i] == roman[i - 3]) {
+                            error2++;
+                        }
+
+                    }
+                    try {
+                        if (error1 != 0) {
+                            throw 461;
+
+                        }
+                        if (error2 != 0) {
+                            throw 462;
+
+                        }
+                    }
+                    catch (int q) {
+                        if (q == 461) {
+                            std::cout << "Вы Ввели неправильно строку! \n";
+                            continue;
+
+                        }
+                        if (q == 462) {
+                            std::cout << "Ошибка, повторений в строке не может быть больше 3! \n";
+                            continue;
+
+                        }
+                    }
+
+                    for (int i = 0; i <= lenght; i++) {
+                        if (roman[i] == 'I') {
+                            num[i] = 1;
+
+                        }
+                        else if (roman[i] == 'V') {
+                            num[i] = 5;
+
+                        }
+                        else if (roman[i] == 'X') {
+                            num[i] = 10;
+
+                        }
+                        else if (roman[i] == 'L') {
+                            num[i] = 50;
+
+                        }
+                        else if (roman[i] == 'C') {
+                            num[i] = 100;
+
+                        }
+                        else if (roman[i] == 'D') {
+                            num[i] = 500;
+
+                        }
+                        else if (roman[i] == 'M') {
+                            num[i] = 1000;
+
+                        }
+
+                    }
+                    for (int i = 0; i < lenght - 1; i++) {
+                        if (num[i] < num[i + 1]) {
+                            result -= num[i];
+                        }
+                        else {
+                            result += num[i];
+                        }
+                    }
+                   result += num[lenght - 1];
+                   cout << "Введённое вами число в арабской записи равно " << result << endl;
+                   cout<<"Введите 1 если хотите продолжить программу, 0 чтобы выйти \n";
+                   cin>>c;
+                   if (c == 0) {
+                       q = false;
+                       break;
+                   }
+                } while (q);
+                break;
 
         }
         case 7: {
