@@ -116,7 +116,7 @@ int option1() {
     i = 3;
     c = 64;
     std::cout << "Введите количество чисел" << std::endl;
-    n = Inputint(0, 100000);
+    n = Inputint(0, 2147483647);
         s = (rand() * 13 - 65) % 2;
     for (int k = 1; k <= n; k++)
     {
@@ -132,7 +132,7 @@ int option2() {
     i = 13849;
     c = 65537;
     cout << "Введите количество чисел" << endl;
-    n = Inputint(0, 100000);
+    n = Inputint(0, 2147483647);
     s = (rand() * 13 - 65) % 2;
     for (int k = 1; k <= n; k++)
     {
@@ -1069,6 +1069,7 @@ void day4() {
     } while (f);
 
 }
+
 void spinner() {
     bool q = true;
     do {
@@ -1084,27 +1085,158 @@ void spinner() {
         int i = Inputint(0, 50);
         switch (i) {
         case 10: {
+            std::cout << "вы выбрали №10 - задание \"Спиннеры\"  \n";
+            std::cout << "Введите стоимость основания спиннера. \n";
+            int  A = Inputint(1, 2147483647);
+            std::cout << "Введите стоимость лопастей. \n";
+            int  B = Inputint(1, 2147483647);
+            std::cout << "Введите ожидаемую стоимость спиннера. \n";
+            int  N = Inputint(1, 2147483647);
+            try {
+                if (A > N) {
+                    throw 101;
+                }
+                if (A + B > N)
+                {
+                    throw 102;
+                }
+            }
+            catch (int a) {
+                if (a == 101) {
+                    std::cout << "Стоимость основания не может быть больше ожидаемой цены.\n";
+                }
+                else
+                    std::cout << "Стоимость основания и лопастей не может быть больше ожидаемой, будет спиннер без лопастей.\n";
+                continue;
+            }
+            cout << "Максимальное количество лопастей = " << (N - A) / B << std::endl;
 
             break;
 
         }
         case 20: {
+            std::cout << "вы выбрали №20 - задание \"Снова спиннеры\" \n";
+            int i = 0, g = 0;
+            long long M;
+            M = Inputint(0, 2147483647);
+            for (int f = 0; f < 3 && f * 4 <= M; f++) {
+
+                if ((M - f * 4) % 3 == 0) {
+                    i++;
+                    std::cout << "(3) (4)\n";
+                    std::cout <<" "<< (M - f * 4) / 3 << "   " << f;
+                    std::cout << std::endl;
+                }
+                if ((M - f * 3) % 4 == 0) {
+                    g++;
+                    std::cout << "(4) (3)\n";
+                    std::cout <<" "<< (M - f * 3) / 4 << "   " << f;
+                    std::cout << std::endl;
+                }
+                
+
+            }
+            if (g == 0 && i == 0) {
+                cout << "0 0";
+            }
+
 
             break;
 
         }
         case 30: {
-
+            std::cout << "вы выбрали №30 - задание \"Не про спиннеры\" \n";
+            int M, N;
+            int result;
+            N = Inputint(1, 75000);
+            M = Inputint(1, 75000);
+            result = (N + 1) * (M + 1) * N * M / 4;
+            std::cout << "Количество квадратов: \n";
+            std::cout << result << std::endl;
             break;
 
         }
         case 40: {
+            std::cout << "вы выбрали №40 - задание \"Плацкартный вагон\" \n";
+            char carriage[55];
+            int x, y;
+            for (int i = 0; i <= 54; i++) {
+                carriage[i] = '0';
 
+            }
+            cout << "Введите количество свободных мест \n";
+            x = Inputint(1, 54);
+            for (int i = 0; i < x; i++) {
+                std::cout <<"Ввeдите номер свободного места \n";
+                y = Inputint(0, 54);
+                if (carriage[y] == '1') {
+                    cout << "Вы уже вводили номер этого места. Введите корректный номер." << endl;
+                    i--;
+
+                }
+                else
+                    carriage[y] = '1';
+         
+            }
+            if ((carriage[1] == '1') & (carriage[2] == '1') & (carriage[3] == '1') & (carriage[4] == '1') & (carriage[53] == '1') & (carriage[54] == '1')) {
+                cout << "Свободно 1-е купе" << endl;
+            }
+            else {
+                cout << "1-е купе не свободно" << endl;
+            }
+            if ((carriage[5] == '1') & (carriage[6] == '1') & (carriage[7] == '1') & (carriage[8] == '1') & (carriage[52] == '1') & (carriage[51] == '1')) {
+                cout << "Свободно 2-е купе" << endl;
+            }
+            else {
+                cout << "2-е купе не свободно" << endl;
+            }
+            if ((carriage[12] == '1') & (carriage[9] == '1') & (carriage[10] == '1') & (carriage[11] == '1') & (carriage[50] == '1') & (carriage[49] == '1')) {
+                cout << "Свободно 3-е купе" << endl;
+            }
+            else {
+                cout << "3-е купе не свободно" << endl;
+            }
+            if ((carriage[16] == '1') & (carriage[13] == '1') & (carriage[14] == '1') & (carriage[15] == '1') & (carriage[47] == '1') & (carriage[48] == '1')) {
+                cout << "Свободно 4-е купе" << endl;
+            }
+            else {
+                cout << "4-е купе не свободно" << endl;
+            }
+            if ((carriage[20] == '1') & (carriage[17] == '1') & (carriage[18] == '1') & (carriage[19] == '1') & (carriage[46] == '1') & (carriage[45] == '1')) {
+                cout << "Свободно 5-е купе" << endl;
+            }
+            else {
+                cout << "5-е купе не свободно" << endl;
+            }
+            if ((carriage[24] == '1') & (carriage[21] == '1') & (carriage[22] == '1') & (carriage[23] == '1') & (carriage[43] == '1') & (carriage[44] == '1')) {
+                cout << "Свободно 6-е купе" << endl;
+            }
+            else {
+                cout << "6-е купе не свободно" << endl;
+            }
+            if ((carriage[25] == '1') & (carriage[26] == '1') & (carriage[27] == '1') & (carriage[28] == '1') & (carriage[42] == '1') & (carriage[41] == '1')) {
+                cout << "Свободно 7-е купе" << endl;
+            }
+            else {
+                cout << "7-е купе не свободно" << endl;
+            }
+            if ((carriage[29] == '1') & (carriage[30] == '1') & (carriage[31] == '1') & (carriage[32] == '1') & (carriage[39] == '1') & (carriage[40] == '1')) {
+                cout << "Свободно 8-е купе" << endl;
+            }
+            else {
+                cout << "8-е купе не свободно" << endl;
+            }
+            if ((carriage[33] == '1') & (carriage[34] == '1') & (carriage[35] == '1') & (carriage[36] == '1') & (carriage[38] == '1') & (carriage[37] == '1')) {
+                cout << "Свободно 9-е купе" << endl;
+            }
+            else {
+                cout << "9-е купе не свободно" << endl;
+            }
             break;
 
         }
         case 50: {
-
+            std::cout << "вы выбрали №50 - задание \"Кинотеатр\" \n";
             break;
 
         }
