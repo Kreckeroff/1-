@@ -5,6 +5,11 @@
 #include <fstream>
 #define M_PI 3.14159265358979323846
 using namespace std;
+/*
+int return1(float a) {
+return a;
+}
+*/
 //Функция заместо strlen. Тк ебанный strlen не работает.
 int e_strlen(char* str) {
     int i = 0;
@@ -1237,6 +1242,22 @@ void spinner() {
         }
         case 50: {
             std::cout << "вы выбрали №50 - задание \"Кинотеатр\" \n";
+            int N, K, q, Q;
+            cout << "Введите количество детей. \n";
+            K = Inputint(0, 2147483647);
+            cout << "Введите количество мест. \n";
+            N = Inputint(K, 2147483647);
+            while (K != 1) {
+                N = (N - (K % 2)) / 2;
+                K = K / 2;
+                q = (N - 1) / 2; Q = N / 2;
+            }
+            cout << q << " " << Q << endl;
+
+            if (K == 1) {
+                cout << (N - 1) / 2 << " " << N / 2 << endl;
+            }
+
             break;
 
         }
