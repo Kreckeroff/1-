@@ -108,6 +108,39 @@ float Inputfloat(int m, int M) {
 
     }
 }
+//Функции для псевдорандомного числа. 1 и 2 вариант.
+int option1() {
+    setlocale(LC_ALL, "Russian");
+    int n, m, i, c, s;
+    m = 37;
+    i = 3;
+    c = 64;
+    std::cout << "Введите количество чисел" << std::endl;
+    n = Inputint(0, 100000);
+        s = (rand() * 13 - 65) % 2;
+    for (int k = 1; k <= n; k++)
+    {
+        s = (m * s + i) % c;
+        cout << s << endl;
+    }
+    return 0;
+}
+int option2() {
+    setlocale(LC_ALL, "Russian");
+    int n, m, i, c, s;
+    m = 25173;
+    i = 13849;
+    c = 65537;
+    cout << "Введите количество чисел" << endl;
+    n = Inputint(0, 100000);
+    s = (rand() * 13 - 65) % 2;
+    for (int k = 1; k <= n; k++)
+    {
+        s = (m * s + i) % c;
+        cout << s << endl;
+    }
+    return 0;
+}
 //Вызов функции с заданиями 1 недели
 void day1() {
     bool a = true;
@@ -988,6 +1021,24 @@ void day4() {
 
         }
         case 70: {
+            bool f = true;
+            do {
+                std::cout << "вы выбрали №70 - задание \"Генератор случайных чисел\" \n";
+                std::cout << "Выберите вариант решения\n№1 = 1 вариант\n№2 = 2 вариант\n";
+                int i = Inputint(1, 2);
+                if (i == 1) {
+                    option1();
+
+                }
+                else
+                    option2();
+                std::cout << "если вы хотите продолжить, введите 1. Чтобы закончить эту программу , введите 0.\n";
+                int q = Inputint(0, 1);
+                if (q == 0) {
+                    f = false;
+                    continue;
+                }
+            } while (f);
             break;
 
         }
@@ -1018,7 +1069,62 @@ void day4() {
     } while (f);
 
 }
+void spinner() {
+    bool q = true;
+    do {
+        cout << "Для просмотра заданий введите номер задания (10-50)" << endl;
+        cout << endl;
+        cout << "№10 - задание \"Спиннеры\"\n";
+        cout << "№20 - задание \"Снова спиннеры\" \n";
+        cout << "№30 - задание \"Не про спиннеры\" \n";
+        cout << "№40 - задание \"Плацкартный вагон\" \n";
+        cout << "№50 - задание \"Кинотеатр\" \n\n";
+        cout << "№0 - выйти в главное меню \n";
+        cout << "№1 - выйти из программы \n";
+        int i = Inputint(0, 50);
+        switch (i) {
+        case 10: {
 
+            break;
+
+        }
+        case 20: {
+
+            break;
+
+        }
+        case 30: {
+
+            break;
+
+        }
+        case 40: {
+
+            break;
+
+        }
+        case 50: {
+
+            break;
+
+        }
+        case 0: {
+            cout << "Выход в меню... \n";
+            q = false;
+            continue;
+
+        }
+        case 1: {
+            std::cout << "Выход из программы...\n";
+            exit(0);
+        }
+        default: {
+            std::cout << "Неверный ввод...\n";
+        }
+        
+        }
+    } while (q);
+}
 
 int main() {
     setlocale(LC_ALL, "Russian");
@@ -1029,6 +1135,7 @@ int main() {
         cout << "№2 - задания 2 недели \n";
         cout << "№3 - задания 3 недели \n";
         cout << "№4 - задания 4 недели \n\n";
+        cout << "№5 - задания про спиннеры и не только \n";
         cout << "№0 - выйти из программы \n";
         cin >> q;
         switch (q) {
@@ -1051,6 +1158,10 @@ int main() {
             break;
 
         }
+        case '5': {
+            spinner();
+            break;
+        }
         case '0': exit(0);
         default: {
             cout << "неверный ввод" << endl;
@@ -1060,5 +1171,5 @@ int main() {
         }
 
     }
-
+    return 0;
 }
