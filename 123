@@ -1,0 +1,62 @@
+std::cout << "вы выбрали №80 - задание \"Умножение матриц\" \n";
+            int row1,row2,col1,col2;
+            std::cout << "запишите длину строки для 1 матрицы. \n";
+            col1 = Inputint(1, 100);
+            std::cout << "запишите длину столбца 1 матрицы. \n";
+            row1 = Inputint(1, 100);
+            std::cout << "запишите длину строки для 2 матрицы. \n";
+            col2 = Inputint(1, 100);
+            std::cout << "запишите длину столбца 2 матрицы. \n";
+            row2 = Inputint(1, 100);
+            double **m, **m1, **m2;
+            m1 = new double*[row1];
+            std::cout<<"Введите 1 матрицу. \n";
+            for(int i = 1; i <= row1;i++){
+                m1[i]= new double[col1];
+                for(int j = 1; j <= col1; j++){
+                    std::cout<<"m1["<<i<<"]["<<j<<"]= ";
+                    m1[i][j] = Inputfloat(-2147483648, 2147483647);
+                }
+                
+            }
+                for(int i = 1;i <= row1;i++) {
+                    for(int j = 1;j <=col1;j++) {
+                        std::cout<<m1[i][j]<<" ";
+                    }
+                        std::cout<<std::endl;
+                    
+                }
+            m2 = new double*[row2];
+            std::cout<<"Введите 2 матрицу. \n";
+            for(int i = 1; i <= row2;i++){
+                m2[i]= new double[col2];
+                for(int j = 1; j <= col2; j++){
+                    std::cout<<"m2["<<i<<"]["<<j<<"]= ";
+                    m2[i][j] = Inputfloat(-2147483648, 2147483647);
+                }
+                
+            }
+                for(int i = 1;i <= row2;i++) {
+                    for(int j = 1;j <=col2;j++) {
+                        std::cout<<m2[i][j]<<" ";
+                    }
+                        std::cout<<std::endl;
+                    
+                }
+            m = new double*[row1];
+            for (int i = 1; i <= row1; i++){
+                m[i] = new double[col2];
+                for (int j = 1; j < col2; j++){
+                    m[i][j] = 0;
+                    for (int t = 1; t < col1; t++){
+                        m[i][j] += m1[i][t] * m2[t][j];
+                    }
+                }
+            }
+            for(int i = 1;i <= row1;i++) {
+            for(int j = 1;j <=col2;j++) {
+                std::cout<<m[i][j]<<" ";
+            }
+                std::cout<<std::endl;
+            }
+            break;
