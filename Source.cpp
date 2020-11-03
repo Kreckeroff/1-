@@ -1216,7 +1216,7 @@ void day4() {
                             check1++;
                         r++;
                     }
-                    if (check1 == col1) {
+                    if (check1 == col1) {//проверка на количество товара
                         std::cout << "Вы ввели 0 товаров для " << l << " продавца! Попробуйте еще раз. \n";
                         std::cout << "Хотите продолжить ? \n1 = изменить количество \n0 = продолжить без изменений \n";
                         int n = Inputint(0, 1);
@@ -1244,7 +1244,7 @@ void day4() {
                 std::cout << "|";
                 std::cout<<std::endl;
             }
-            do {
+            do {//ввод 2 матрицы в программу
                 check1 = 0;
                 m2 = new double* [row2];
                 std::cout << "Введите 2 матрицу. \n";
@@ -1258,14 +1258,14 @@ void day4() {
                     }
 
                 }
-                for (int l = 1; l <= row2;) {
+                for (int l = 1; l <= row2;) {//проверка на ценник = 0
                     if (m2[l][1] == 0) {
                         std::cout << "Цена не может быть равна 0 для " << l << " товара! Попробуйте еще раз. \n";
                         check1++;
                     }
                     l++;
                 }
-                for (int l = 1; l <= row2;) {
+                for (int l = 1; l <= row2;) {//проверка на то что комиссия больше чем цена
                     if (m2[l][1] - m2[l][2] < 0) {
                         std::cout << "комиссия не может быть больше цены у "<<l<<" товара! Попробуйте еще раз. \n";
                         check1++;
@@ -1275,7 +1275,7 @@ void day4() {
                 if (check1 == 0)
                     mas2 = false;
             } while (mas2);
-            std::cout << "Матрица цены к комиссии: \n";
+            std::cout << "Матрица цены к комиссии: \n";//вывод 2 матрицы
             for(int i = 1;i <= row2;i++) {
                 std::cout << "|";
                 for(int j = 1;j <=col2;j++) {
@@ -1285,7 +1285,7 @@ void day4() {
                 std::cout<<std::endl;
                     
             }
-            m = new double* [row1];
+            m = new double* [row1];//перемножение матрицы
             for (int i = 1; i <= row1; i++)
             {
                 m[i] = new double[col2];
@@ -1296,7 +1296,7 @@ void day4() {
                         m[i][j] += m1[i][k] * m2[k][j];
                 }
             }
-            std::cout << "Прибыль/комиссия \n";
+            std::cout << "Прибыль/комиссия \n";//вывод перемноженной матрицы
             for (int i = 1; i <= row1; i++) {
                 std::cout << "|";
                 for (int j = 1; j <= col2; j++) {
@@ -1320,10 +1320,7 @@ void day4() {
             int personal_min_commission = comparisoncommission(m, col2, row1, mincommission);
             float maxmoneyall = max_money_all(m, col2, row1);
             float maxclearmoneyall = max_clear_money_all(m, col2, row1);
-            float maxcommissionall = max_commission_all(m, col2, row1);
-                 
-
-
+            float maxcommissionall = max_commission_all(m, col2, row1);           
             std::cout <<"Наибольшая выручка будет у "<<personal_max_money<<" продавца. Выручка = "<<maxmoney<<std::endl;
             std::cout <<"Наименьшая выручка будет у " << personal_min_money << " продавца. Выручка = " << minmoney << std::endl;
             std::cout << "Наибольшая комиссия будет у " << personal_max_commission << " продавца. Комиссия = " << maxcommission << std::endl;
@@ -1332,7 +1329,7 @@ void day4() {
             std::cout << "Общая комиссия будет = " << maxcommissionall << std::endl;
             std::cout << "Общая выручка будет = " << maxmoneyall << std::endl;
             break;
-
+                
         }
         case 90: {
             break;
