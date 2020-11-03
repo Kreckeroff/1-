@@ -1,8 +1,11 @@
-
+﻿
 #include <iostream>
 #include <cmath>
 #include <string>
 #include <fstream>
+#define NOMINMAX
+#include <Windows.h>
+
 #define M_PI 3.14159265358979323846
 
 using namespace std;
@@ -11,6 +14,7 @@ int return1(float a) {
 return a;
 }
 */
+
 //Функция заместо strlen. Тк ебанный strlen не работает.
 int e_strlen(char* str) {
     int i = 0;
@@ -1051,65 +1055,140 @@ void day4() {
         case 80: {
             std::cout << "вы выбрали №80 - задание \"Умножение матриц\" \n";
             int row1,row2,col1,col2;
-            std::cout << "запишите длину строки для 1 матрицы. \n";
-            col1 = Inputint(1, 100);
-            std::cout << "запишите длину столбца 1 матрицы. \n";
-            row1 = Inputint(1, 100);
-            std::cout << "запишите длину строки для 2 матрицы. \n";
-            col2 = Inputint(1, 100);
-            std::cout << "запишите длину столбца 2 матрицы. \n";
-            row2 = Inputint(1, 100);
+                std::cout << "запишите количество разных товаров для 1 матрицы от 1 до 10. \n";
+                col1 = Inputint(1, 10);//может быть от 1 до 10 продавцов
+                std::cout << "запишите количество продавцов для 1 матрицы от 1 до 10. \n";
+                row1 = Inputint(1, 10);//может быть от 1 до 10 товаров
+                col2 = 2;
+                row2 = col1;
             double **m, **m1, **m2;
-            m1 = new double*[row1];
-            std::cout<<"Введите 1 матрицу. \n";
-            for(int i = 1; i <= row1;i++){
-                m1[i]= new double[col1];
-                for(int j = 1; j <= col1; j++){
-                    std::cout<<"m1["<<i<<"]["<<j<<"]= ";
-                    m1[i][j] = Inputfloat(-2147483648, 2147483647);
-                }
-                
-            }
-                for(int i = 1;i <= row1;i++) {
-                    for(int j = 1;j <=col1;j++) {
-                        std::cout<<m1[i][j]<<" ";
+            bool qwe = true;
+            int l = 1, r = 1;
+            int e = 0;
+            do {
+                int check = 0;
+                l = 1, r = 1;
+                m1 = new double* [row1];
+                std::cout << "Введите 1 матрицу. \n";
+                for (int i = 1; i <= row1; i++) {
+                    m1[i] = new double[col1];
+                    std::cout << "Введите количество товаров для " << i << " продавца. \n";
+                    for (int j = 1; j <= col1;) {
+                        std::cout << "m1[" << i << "][" << j << "]= ";
+                        m1[i][j] = Inputfloat(0, 2147483647);
+                        j++;
                     }
-                        std::cout<<std::endl;
-                    
+
                 }
-            m2 = new double*[row2];
-            std::cout<<"Введите 2 матрицу. \n";
-            for(int i = 1; i <= row2;i++){
-                m2[i]= new double[col2];
-                for(int j = 1; j <= col2; j++){
-                    std::cout<<"m2["<<i<<"]["<<j<<"]= ";
-                    m2[i][j] = Inputfloat(-2147483648, 2147483647);
-                }
-                
-            }
-                for(int i = 1;i <= row2;i++) {
-                    for(int j = 1;j <=col2;j++) {
-                        std::cout<<m2[i][j]<<" ";
+                while (l <= row1) {
+                    e = 0;
+                    r = 1;
+                    while (r <= col1) {
+                        if (m1[l][r] == 0)
+                            e++;
+                        r++;
                     }
-                        std::cout<<std::endl;
-                    
-                }
-            m = new double*[row1];
-            for (int i = 1; i <= row1; i++){
-                m[i] = new double[col2];
-                for (int j = 1; j < col2; j++){
-                    m[i][j] = 0;
-                    for (int t = 1; t < col1; t++){
-                        m[i][j] += m1[i][t] * m2[t][j];
+                    if (e == col1) {
+                        std::cout << "Вы ввели 0 товаров для " << l << " продавца! Попробуйте еще раз. \n";
+                        std::cout << "Хотите продолжить ? \n1 = изменить количество \n0 = продолжить без изменений \n";
+                        int n = Inputint(0, 1);
+                        if (n == 1) {
+                            qwe = true;
+                            check++;
+                        }
+                        else
+                            qwe = false;
+
                     }
+                    else
+                        qwe = false;
+                    l++;
                 }
-            }
+                if (check > 0)
+                    qwe = true;
+            } while (qwe);
+            std::cout << "Матрица продавцов к товару: \n";
             for(int i = 1;i <= row1;i++) {
-            for(int j = 1;j <=col2;j++) {
-                std::cout<<m[i][j]<<" ";
-            }
+                std::cout << "|";
+                for(int j = 1;j <=col1;j++) {
+                    std::cout<<m1[i][j]<<" ";
+                }
+                std::cout << "|";
                 std::cout<<std::endl;
             }
+            bool qwert = true;
+            do {
+                l = 1;
+                e = 0;
+                m2 = new double* [row2];
+                std::cout << "Введите 2 матрицу. \n";
+                for (int i = 1; i <= row2; i++) {
+                    std::cout << "Введите цену/комиссию для " << i << " товара. \n";
+                    m2[i] = new double[col2];
+                    for (int j = 1; j <= col2;) {
+                        std::cout << "m2[" << i << "][" << j << "]= ";
+                        m2[i][j] = Inputfloat(0, 2147483647);
+                        j++;
+                    }
+
+                }
+                while (l <= row2) {
+                    if (m2[l][1] == 0) {
+                        std::cout << "Цена не может быть равна 0 для " << l << " товара! Попробуйте еще раз. \n";
+                        e++;
+                    }
+                    l++;
+                }
+                l = 1;
+                while (l <= row2) {
+                    if (m2[l][1] - m2[l][2] < 0) {
+                        std::cout << "комиссия не может быть больше цены у "<<l<<" товара! Попробуйте еще раз. \n";
+                        e++;
+                    }
+                    l++;
+                }
+                if (e == 0)
+                    qwert = false;
+            } while (qwert);
+            std::cout << "Матрица цены к комиссии: \n";
+            for(int i = 1;i <= row2;i++) {
+                std::cout << "|";
+                for(int j = 1;j <=col2;j++) {
+                    std::cout<<m2[i][j]<<" ";
+                }
+                std::cout << "|";
+                std::cout<<std::endl;
+                    
+            }
+            m = new double* [row1];
+            for (int i = 1; i <= row1; i++)
+            {
+                m[i] = new double[col2];
+                for (int j = 1; j <= col2; j++)
+                {
+                    m[i][j] = 0;
+                    for (int k = 1; k <= col1; k++)
+                        m[i][j] += m1[i][k] * m2[k][j];
+                }
+            }
+            std::cout << "Прибыль/комиссия \n";
+            for (int i = 1; i <= row1; i++) {
+                std::cout << "|";
+                for (int j = 1; j <= col2; j++) {
+                    std::cout << m[i][j] << " ";
+                }
+                std::cout << "|";
+                std::cout << std::endl;
+            }
+                r = 1;
+            std::cout << "Вывод работы программы: \n";
+            while (r <= row1) {
+                if (m[r][1] == 0)
+                    std::cout << "У " << r << " продавца указано 0 товаров. \n";
+                r++;
+            }
+                
+     
             break;
 
         }
