@@ -14,7 +14,136 @@ int return1(float a) {
 return a;
 }
 */
+double max_money(double** m, int col2, int row1) {
+    float tmp = 0;
+    float tmp1 = 0;
+    float tmp2 = 0;
+    for (int i = 1; i <= row1; i++) {
+        if (tmp > tmp1) {
+            tmp2 = tmp;
 
+        }
+        tmp1 = tmp;
+        for (int j = 1; j <= col2;) {
+            tmp = m[i][j] - m[i][j + 1];
+            break;
+        }
+    }
+    return tmp2;
+}
+double max_money_all(double** m, int col2, int row1) {
+    float tmp = 0;
+    float tmp1 = 0;
+    for (int i = 1; i <= row1; i++) {
+        for (int j = 1; j <= col2;) {
+            tmp = m[i][j];
+            tmp1 += tmp;
+            break;
+        }
+    }
+    return tmp1;
+}
+double max_clear_money_all(double** m, int col2, int row1) {
+    float tmp = 0;
+    float tmp1 = 0;
+    for (int i = 1; i <= row1; i++) {
+        for (int j = 1; j <= col2;) {
+            tmp = m[i][j] - m[i][j + 1];
+            tmp1 += tmp;
+            break;
+        }
+    }
+    return tmp1;
+}
+double max_commission_all(double** m, int col2, int row1) {
+    float tmp = 0;
+    float tmp1 = 0;
+    for (int i = 1; i <= row1; i++) {
+        for (int j = 2; j <= col2;) {
+            tmp = m[i][j];
+            tmp1 += tmp;
+            break;
+        }
+    }
+    return tmp1;
+}
+double max_commission(double** m, int col2, int row1) {
+    float tmp = 0;
+    float tmp1 = 0;
+    float tmp2 = 0;
+    for (int i = 1; i <= row1; i++) {
+        if (tmp > tmp1) {
+            tmp2 = tmp;
+
+        }
+        tmp1 = tmp;
+        for (int j = 2; j <= col2;) {
+            tmp = m[i][j];
+            break;
+        }
+    }
+    return tmp2;
+}
+double min_commission(double** m, int col2, int row1) {
+    float tmp = 0;
+    float tmp1 = 10000000;
+    float tmp2 = 0;
+    for (int i = 2; i - 1<= row1; i++) {
+        for (int j = 2; j <= col2;) {
+            tmp = m[i-1][j];
+            if (tmp < tmp1) {
+                tmp2 = tmp;
+
+            }
+            tmp1 = tmp;
+            break;
+        }
+    }
+    return tmp2;
+}
+double min_money(double** m, int col2, int row1, float maxmoney) {
+    float tmp2 = 0;
+    for (int i = 1; i <= row1; row1--) {
+        for (int j = 1; j <= col2;) {
+            float tmp = m[row1][j] - m[row1][j + 1];
+            if (tmp < maxmoney) {
+                tmp2 = tmp;
+            }
+            maxmoney = tmp;
+            break;
+        }
+    }
+    return tmp2;
+}
+double comparisonmoney(double** m, int col2, int row1, float tmp2) {
+    float tmp = 0;
+    float tmp1 = 0;
+    for (int i = 1; i <= row1; i++) {
+        if (tmp2 == tmp) {
+            tmp1 = i - 1;
+            return tmp1;
+        }
+        for (int j = 1; j <= col2;) {
+            tmp = m[i][j] - m[i][j + 1];
+            break;
+        }
+    }
+}
+double comparisoncommission(double** m, int col2, int row1, float tmp2) {
+    float tmp = 0;
+    float tmp1 = 0;
+    for (int i = 1; i <= row1; i++) {
+        
+        for (int j = 2; j <= col2;) {
+            tmp = m[i][j];
+            if (tmp2 == tmp) {
+                tmp1 = i;
+                return tmp1;
+            }
+            break;
+        }
+    }
+}
 //Функция заместо strlen. Тк ебанный strlen не работает.
 int e_strlen(char* str) {
     int i = 0;
@@ -1055,19 +1184,18 @@ void day4() {
         case 80: {
             std::cout << "вы выбрали №80 - задание \"Умножение матриц\" \n";
             int row1,row2,col1,col2;
-                std::cout << "запишите количество разных товаров для 1 матрицы от 1 до 10. \n";
+            double** m, ** m1, ** m2;
+                std::cout << "запишите количество разновидностей товаров для продавцов от 1 до 10. \n";
                 col1 = Inputint(1, 10);//может быть от 1 до 10 продавцов
-                std::cout << "запишите количество продавцов для 1 матрицы от 1 до 10. \n";
+                std::cout << "запишите количество продавцов  от 1 до 10. \n";
                 row1 = Inputint(1, 10);//может быть от 1 до 10 товаров
+                bool mas1 = true;
+                bool mas2 = true;
+                int check1 = 0;
                 col2 = 2;
                 row2 = col1;
-            double **m, **m1, **m2;
-            bool qwe = true;
-            int l = 1, r = 1;
-            int e = 0;
-            do {
+            do {//Ввод 1 матрицы
                 int check = 0;
-                l = 1, r = 1;
                 m1 = new double* [row1];
                 std::cout << "Введите 1 матрицу. \n";
                 for (int i = 1; i <= row1; i++) {
@@ -1075,40 +1203,40 @@ void day4() {
                     std::cout << "Введите количество товаров для " << i << " продавца. \n";
                     for (int j = 1; j <= col1;) {
                         std::cout << "m1[" << i << "][" << j << "]= ";
+                        std::cout << "Введите количество товара типа (" << j << ") для " << i << " продавца. \n";
                         m1[i][j] = Inputfloat(0, 2147483647);
                         j++;
                     }
 
                 }
-                while (l <= row1) {
-                    e = 0;
-                    r = 1;
-                    while (r <= col1) {
+                for (int l = 1; l <= row1;) {
+                    check1 = 0;
+                    for (int r = 1; r <= col1;) {
                         if (m1[l][r] == 0)
-                            e++;
+                            check1++;
                         r++;
                     }
-                    if (e == col1) {
+                    if (check1 == col1) {
                         std::cout << "Вы ввели 0 товаров для " << l << " продавца! Попробуйте еще раз. \n";
                         std::cout << "Хотите продолжить ? \n1 = изменить количество \n0 = продолжить без изменений \n";
                         int n = Inputint(0, 1);
                         if (n == 1) {
-                            qwe = true;
+                            mas1 = true;
                             check++;
                         }
                         else
-                            qwe = false;
+                            mas1 = false;
 
                     }
                     else
-                        qwe = false;
+                        mas1 = false;
                     l++;
                 }
                 if (check > 0)
-                    qwe = true;
-            } while (qwe);
-            std::cout << "Матрица продавцов к товару: \n";
-            for(int i = 1;i <= row1;i++) {
+                    mas1 = true;
+            } while (mas1);//закончили ввод 1 матрицы
+            std::cout << "Матрица продавца-(ов) к товару: \n";
+            for(int i = 1;i <= row1;i++) {//вывод на экран 1 матрицы
                 std::cout << "|";
                 for(int j = 1;j <=col1;j++) {
                     std::cout<<m1[i][j]<<" ";
@@ -1116,10 +1244,8 @@ void day4() {
                 std::cout << "|";
                 std::cout<<std::endl;
             }
-            bool qwert = true;
             do {
-                l = 1;
-                e = 0;
+                check1 = 0;
                 m2 = new double* [row2];
                 std::cout << "Введите 2 матрицу. \n";
                 for (int i = 1; i <= row2; i++) {
@@ -1132,24 +1258,23 @@ void day4() {
                     }
 
                 }
-                while (l <= row2) {
+                for (int l = 1; l <= row2;) {
                     if (m2[l][1] == 0) {
                         std::cout << "Цена не может быть равна 0 для " << l << " товара! Попробуйте еще раз. \n";
-                        e++;
+                        check1++;
                     }
                     l++;
                 }
-                l = 1;
-                while (l <= row2) {
+                for (int l = 1; l <= row2;) {
                     if (m2[l][1] - m2[l][2] < 0) {
                         std::cout << "комиссия не может быть больше цены у "<<l<<" товара! Попробуйте еще раз. \n";
-                        e++;
+                        check1++;
                     }
                     l++;
                 }
-                if (e == 0)
-                    qwert = false;
-            } while (qwert);
+                if (check1 == 0)
+                    mas2 = false;
+            } while (mas2);
             std::cout << "Матрица цены к комиссии: \n";
             for(int i = 1;i <= row2;i++) {
                 std::cout << "|";
@@ -1180,15 +1305,32 @@ void day4() {
                 std::cout << "|";
                 std::cout << std::endl;
             }
-                r = 1;
             std::cout << "Вывод работы программы: \n";
-            while (r <= row1) {
+            for (int r = 1; r <= row1;r++) {
                 if (m[r][1] == 0)
                     std::cout << "У " << r << " продавца указано 0 товаров. \n";
-                r++;
             }
-                
-     
+            float maxmoney = max_money(m, col2, row1);
+            int personal_max_money = comparisonmoney(m, col2, row1, maxmoney);
+            double minmoney = min_money(m, col2, row1, maxmoney);
+            int personal_min_money = comparisonmoney(m, col2, row1, minmoney);
+            float maxcommission = max_commission(m, col2, row1);
+            int personal_max_commission = comparisoncommission(m, col2, row1, maxcommission);
+            float mincommission = min_commission(m, col2, row1);
+            int personal_min_commission = comparisoncommission(m, col2, row1, mincommission);
+            float maxmoneyall = max_money_all(m, col2, row1);
+            float maxclearmoneyall = max_clear_money_all(m, col2, row1);
+            float maxcommissionall = max_commission_all(m, col2, row1);
+                 
+
+
+            std::cout <<"Наибольшая выручка будет у "<<personal_max_money<<" продавца. Выручка = "<<maxmoney<<std::endl;
+            std::cout <<"Наименьшая выручка будет у " << personal_min_money << " продавца. Выручка = " << minmoney << std::endl;
+            std::cout << "Наибольшая комиссия будет у " << personal_max_commission << " продавца. Комиссия = " << maxcommission << std::endl;
+            std::cout << "Наименьшая комиссия будет у " << personal_min_commission << " продавца. Комиссия = " << mincommission << std::endl;
+            std::cout << "Общая чистая выручка будет = " << maxclearmoneyall << std::endl;
+            std::cout << "Общая комиссия будет = " << maxcommissionall << std::endl;
+            std::cout << "Общая выручка будет = " << maxmoneyall << std::endl;
             break;
 
         }
