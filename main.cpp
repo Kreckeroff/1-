@@ -11,37 +11,44 @@
 #include <string>
 #include <fstream>
 using namespace std;
-
+//Функция заместо ебучего strlen, которая не работает
+int e_strlen(char *str) {
+    int i = 0;
+    while (str[i] != '\0')
+        i++;
+    return (i);
+}
 //Функция для определения площади у прямоугольника
-int area1(int x,int y){
+int area1(int x,int y) {
     
     int result = x * y;
     return result;
     
 }
-float area22(int x, int y){
-    float result = x * y * 0.5;
-    return result;
-}
 //Функция для определения площади по формуле Герона у треугольника
-float area21(int x, int y, int z){
+float area21(int x, int y, int z) {
     float p = (x + y + z) * 0.5;
     float result = sqrt(p*(p - x) * ( p - y ) * (p - z));
     return result;
     
 }
+//
+float area22(int x, int y) {
+    float result = x * y * 0.5;
+    return result;
+}
 //Функция для определения площади у круга
-float area3(int x){
+float area3(int x) {
     float result = M_PI * pow(x,2);
     return result;
 }
 //Функция для определения знака у введенного числа
-int sign_x(int x){
+int sign_x(int x) {
     if(x > 0){
         return 1;
         
     }
-    else if (x < 0){
+    else if (x < 0) {
         return -1;
         
     }
@@ -635,7 +642,7 @@ void day4(){
     int M = 9;
     bool f = true;
     do{
-        std::cout << "Для просмотра заданий введите номер задания (1-5)" << endl;
+        std::cout << "Для просмотра заданий введите номер задания (1-5) " << endl;
         cout << endl;
         cout << "№1 - задание \"Файл\"\n";
         cout << "№2 - задание \"Знак числа\" \n";
@@ -860,6 +867,86 @@ void day4(){
                 
             }
             case 6: {
+                int result = 0, num[30], error1 = 0, error2 = 0, lenght,c;
+                char roman[30];
+                bool q = false;
+                do {
+                    std::cin>>roman;
+                    lenght = e_strlen(roman);
+                    for(int i = 0; i < lenght; i++) {
+                        if(!((roman[i] == 'I')||(roman[i] == 'V')||(roman[i] == 'X')||(roman[i] == 'L')||(roman[i] == 'C')||(roman[i] == 'D')||(roman[i] == 'M'))){
+                            error1++;
+                        }
+                        if(error1 != 0) {
+                            q = true;
+                            std::cout<<"Неверный ввод! \n";
+                            break;
+                            
+                        }
+                        
+                    }
+                        for(int i = 3; i < lenght;i++){
+                            if(roman[i] == roman[i - 1] && roman[i] == roman[i - 2] && roman[i] == roman[i - 3]){
+                                error2++;
+                                
+                            }
+                            if(error2 != 0) {
+                            q = true;
+                            std::cout<<"Неверный ввод, в римской записи не может повторятся число больше 3 раз подряд! \n";
+                            break;
+                        }
+                            
+                    }
+                    for (int i = 0; i <= lenght; i++) {
+                        if (roman[i] == 'I') {
+                            num[i] = 1;
+                            
+                        }
+                        else if (roman[i] == 'V') {
+                            num[i] = 5;
+                            
+                        }
+                        else if (roman[i] == 'X') {
+                            num[i] = 10;
+                            
+                        }
+                        else if (roman[i] == 'L') {
+                            num[i] = 50;
+                            
+                        }
+                        else if (roman[i] == 'C') {
+                            num[i] = 100;
+                            
+                        }
+                        else if (roman[i] == 'D') {
+                            num[i] = 500;
+                            
+                        }
+                        else if (roman[i] == 'M') {
+                            num[i] = 1000;
+                            
+                        }
+                        
+                    }
+                    for (int i = 0; i < lenght - 1; i++) {
+                        if (num[i] < num[i + 1]) {
+                            result -= num[i];
+                        }
+                        else {
+                            result += num[i];
+                        }
+                    }
+                    if(q != false) {
+                        result += num[lenght - 1];
+                    cout << "Введённое вами число в арабской записи равно " << result << endl;
+                    }
+                    cout<<"Введите 1 если хотите продолжить программу, 0 чтобы выйти \n";
+                    cin>>c;
+                    if(c == 0){
+                        q = true;
+                        break;
+                    }
+                }while(q);
                 break;
             
             }
