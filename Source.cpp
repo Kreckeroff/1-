@@ -19,13 +19,13 @@ double max_money(double** m, int col2, int row1) {
     float tmp1 = 0;
     float tmp2 = 0;
     for (int i = 1; i <= row1; i++) {
-        if (tmp > tmp1) {
-            tmp2 = tmp;
-
-        }
-        tmp1 = tmp;
         for (int j = 1; j <= col2;) {
             tmp = m[i][j] - m[i][j + 1];
+            if (tmp > tmp1) {
+                tmp2 = tmp;
+
+            }
+            tmp1 = tmp;
             break;
         }
     }
@@ -72,13 +72,13 @@ double max_commission(double** m, int col2, int row1) {
     float tmp1 = 0;
     float tmp2 = 0;
     for (int i = 1; i <= row1; i++) {
-        if (tmp > tmp1) {
-            tmp2 = tmp;
-
-        }
-        tmp1 = tmp;
         for (int j = 2; j <= col2;) {
             tmp = m[i][j];
+            if (tmp > tmp1) {
+                tmp2 = tmp;
+
+            }
+            tmp1 = tmp;
             break;
         }
     }
@@ -119,12 +119,12 @@ double comparisonmoney(double** m, int col2, int row1, float tmp2) {
     float tmp = 0;
     float tmp1 = 0;
     for (int i = 1; i <= row1; i++) {
-        if (tmp2 == tmp) {
-            tmp1 = i - 1;
-            return tmp1;
-        }
         for (int j = 1; j <= col2;) {
             tmp = m[i][j] - m[i][j + 1];
+            if (tmp2 == tmp) {
+                tmp1 = i;
+                return tmp1;
+            }
             break;
         }
     }
@@ -133,7 +133,6 @@ double comparisoncommission(double** m, int col2, int row1, float tmp2) {
     float tmp = 0;
     float tmp1 = 0;
     for (int i = 1; i <= row1; i++) {
-        
         for (int j = 2; j <= col2;) {
             tmp = m[i][j];
             if (tmp2 == tmp) {
@@ -1216,7 +1215,7 @@ void day4() {
                             check1++;
                         r++;
                     }
-                    if (check1 == col1) {//проверка на количество товара
+                    if (check1 == col1) {
                         std::cout << "Вы ввели 0 товаров для " << l << " продавца! Попробуйте еще раз. \n";
                         std::cout << "Хотите продолжить ? \n1 = изменить количество \n0 = продолжить без изменений \n";
                         int n = Inputint(0, 1);
@@ -1245,6 +1244,7 @@ void day4() {
                 std::cout<<std::endl;
             }
             do {//ввод 2 матрицы в программу
+                float asd;
                 check1 = 0;
                 m2 = new double* [row2];
                 std::cout << "Введите 2 матрицу. \n";
@@ -1253,20 +1253,21 @@ void day4() {
                     m2[i] = new double[col2];
                     for (int j = 1; j <= col2;) {
                         std::cout << "m2[" << i << "][" << j << "]= ";
-                        m2[i][j] = Inputfloat(0, 2147483647);
+                        asd = Inputfloat(0, 2147483647);
+                        m2[i][j] = asd;
                         j++;
                     }
 
                 }
-                for (int l = 1; l <= row2;) {//проверка на ценник = 0
-                    if (m2[l][1] == 0) {
+                for (int l = 1; l <= row2;) {
+                    if (m2[l][1] == 0) {//проверка на ценник = 0
                         std::cout << "Цена не может быть равна 0 для " << l << " товара! Попробуйте еще раз. \n";
                         check1++;
                     }
                     l++;
                 }
-                for (int l = 1; l <= row2;) {//проверка на то что комиссия больше чем цена
-                    if (m2[l][1] - m2[l][2] < 0) {
+                for (int l = 1; l <= row2;) {
+                    if (m2[l][1] - m2[l][2] < 0) {//проверка на то что комиссия больше чем цена
                         std::cout << "комиссия не может быть больше цены у "<<l<<" товара! Попробуйте еще раз. \n";
                         check1++;
                     }
@@ -1320,7 +1321,7 @@ void day4() {
             int personal_min_commission = comparisoncommission(m, col2, row1, mincommission);
             float maxmoneyall = max_money_all(m, col2, row1);
             float maxclearmoneyall = max_clear_money_all(m, col2, row1);
-            float maxcommissionall = max_commission_all(m, col2, row1);           
+            float maxcommissionall = max_commission_all(m, col2, row1);
             std::cout <<"Наибольшая выручка будет у "<<personal_max_money<<" продавца. Выручка = "<<maxmoney<<std::endl;
             std::cout <<"Наименьшая выручка будет у " << personal_min_money << " продавца. Выручка = " << minmoney << std::endl;
             std::cout << "Наибольшая комиссия будет у " << personal_max_commission << " продавца. Комиссия = " << maxcommission << std::endl;
@@ -1329,7 +1330,7 @@ void day4() {
             std::cout << "Общая комиссия будет = " << maxcommissionall << std::endl;
             std::cout << "Общая выручка будет = " << maxmoneyall << std::endl;
             break;
-                
+
         }
         case 90: {
             break;
@@ -1593,6 +1594,39 @@ int main() {
         }
         case '5': {
             spinner();
+            break;
+        }
+        case 'test': {
+        /*#include <vector>
+        #include <iostream>
+                    template<class T>
+                    void StalinSort(std::vector<T> & L)
+                    {
+                        auto it = L.begin();
+                        auto aux = it;
+                        while (it != L.end())
+                        {
+                            if (*it < *aux)
+                            {
+                                it = L.erase(it);
+                            }
+                            else
+                            {
+                                aux = it;
+                                it++;
+                            }
+                        }
+                    }
+
+                    int main()
+                    {
+                        std::vector<int> l = { 1,2,3,5,4,6,4,8,9 };
+                        StalinSort(l);
+                        for (auto x : l)
+                        {
+                            std::cout << x << std::endl;
+                        }
+                    }*/
             break;
         }
         case '0': exit(0);
