@@ -3,6 +3,7 @@
 #include <cmath>
 #include <string>
 #include <fstream>
+#include <vector>
 #define NOMINMAX
 #include <Windows.h>
 
@@ -14,6 +15,26 @@ int return1(float a) {
 return a;
 }
 */
+
+//StalinSort
+template<class T>
+void StalinSort(std::vector<T>& L)
+{
+    auto it = L.begin();//1,2,3,5,4,6,4,8,9 
+    auto aux = it;
+    while (it != L.end())
+    {
+        if (*it < *aux)
+        {
+            it = L.erase(it);
+        }
+        else
+        {
+            aux = it;
+            it++;
+        }
+    }
+}
 double max_money(double** m, int col2, int row1) {
     float tmp = 0;
     float tmp1 = 0;
@@ -1244,7 +1265,6 @@ void day4() {
                 std::cout<<std::endl;
             }
             do {//ввод 2 матрицы в программу
-                float asd;
                 check1 = 0;
                 m2 = new double* [row2];
                 std::cout << "Введите 2 матрицу. \n";
@@ -1253,8 +1273,7 @@ void day4() {
                     m2[i] = new double[col2];
                     for (int j = 1; j <= col2;) {
                         std::cout << "m2[" << i << "][" << j << "]= ";
-                        asd = Inputfloat(0, 2147483647);
-                        m2[i][j] = asd;
+                        m2[i][j] = Inputfloat(0, 2147483647);
                         j++;
                     }
 
@@ -1560,6 +1579,59 @@ void spinner() {
     } while (q);
 }
 
+int Euclidean_algorithm(int n1, int n2)
+{
+    int div;
+    if (n1 == n2)   // если числа равны, НОД найден
+        return n1;
+    int d = n1 - n2; // Находим разность чисел
+    if (d < 0)       // если разность отрицательная,
+    {
+        d = -d;     // меняем знак
+        div = Euclidean_algorithm(n1, d); // вызываем функцию NOD() для двух наименьших чисел
+    }
+    else      // если разность n1-n2 положительная
+    {
+        div = Euclidean_algorithm(n2, d); // вызываем функцию NOD() для двух наименьших чисел
+    }
+    return div;
+}
+
+void algorithm() {
+    int a, b;
+    cout << "Введите 1 число:\n";
+    a = Inputint(-2147483648, 2147483647);
+    cout << "Введите 2 число:\n";
+    b = Inputint(-2147483648, 2147483647);
+    cout << Euclidean_algorithm(a, b);
+    cin.get();
+}
+
+void Sort() {
+    std::vector<int> l = { 1,2,3,5,4,6,4,8,9 };
+    StalinSort(l);
+    for (auto x : l) {
+        std::cout << x << std::endl;
+
+    }
+}
+void Sieve_of_Eratosthenes(int a) {
+    for (int i = 2; i < a; i++) {
+                if (i == 2 || i == 3 || i == 5 || i == 7) {
+                    std::cout << i << std::endl;
+                    continue;
+                }
+                if (i % 2 == 0)
+                    continue;
+                if (i % 3 == 0)
+                    continue;
+                if (i % 5 == 0)
+                    continue;
+                if (i % 7 == 0)
+                    continue;
+                std::cout << i << std::endl;
+            }
+}
 int main() {
     setlocale(LC_ALL, "Russian");
     char q;
@@ -1570,6 +1642,9 @@ int main() {
         cout << "№3 - задания 3 недели \n";
         cout << "№4 - задания 4 недели \n\n";
         cout << "№5 - задания про спиннеры и не только \n";
+        cout << "№6 - StalinSort \n";
+        cout << "№7 - Euclidean_algorithm \n";
+        cout << "№8 - Sieve_of_Eratosthenes \n";
         cout << "№0 - выйти из программы \n";
         cin >> q;
         switch (q) {
@@ -1596,37 +1671,17 @@ int main() {
             spinner();
             break;
         }
-        case 'test': {
-        /*#include <vector>
-        #include <iostream>
-                    template<class T>
-                    void StalinSort(std::vector<T> & L)
-                    {
-                        auto it = L.begin();
-                        auto aux = it;
-                        while (it != L.end())
-                        {
-                            if (*it < *aux)
-                            {
-                                it = L.erase(it);
-                            }
-                            else
-                            {
-                                aux = it;
-                                it++;
-                            }
-                        }
-                    }
-
-                    int main()
-                    {
-                        std::vector<int> l = { 1,2,3,5,4,6,4,8,9 };
-                        StalinSort(l);
-                        for (auto x : l)
-                        {
-                            std::cout << x << std::endl;
-                        }
-                    }*/
+        case '6': {
+            Sort();
+            break;
+        }
+        case '7': {
+            algorithm();
+            break;
+        }
+        case'8': {
+            int a = Inputint(0, 2147483647);
+            Sieve_of_Eratosthenes(a);
             break;
         }
         case '0': exit(0);
