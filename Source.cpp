@@ -6,10 +6,22 @@
 #include <vector>
 #define NOMINMAX
 #include <Windows.h>
-
 #define M_PI 3.14159265358979323846
 
 using namespace std;
+char alphabet(int num){
+    char out[] = { '0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F' };
+    return out[num];
+}
+void other(int num, int fresh) {
+    if (num < fresh) {
+        std::cout << alphabet(num);
+        return;
+    }
+    other(num / fresh, fresh);
+    std::cout << alphabet(num % fresh);
+}
+
 /*
 int return1(float a) {
 return a;
@@ -245,6 +257,7 @@ int Inputint(int m, int M) {
 
     }
 }
+
 //Функция ввода float переменной с клавиатуры с проверкой на введенные неккоректные символы с заданным диапазоном значений
 float Inputfloat(int m, int M) {
     for (;;) {
@@ -1352,6 +1365,64 @@ void day4() {
 
         }
         case 90: {
+            bool flag1 = true;
+            int num = 0, old, fresh, in = 0, flag = 0, q = 0;
+            string number;
+            do {
+                num = 0;
+                in = 0;
+                flag = 0;
+                q = 0;
+                std::cout << "Введите число\n";
+                cin >> number;
+                for (int i = 0; i < number.length() - 1; i++) {//не работает для чисел из 1 элемента
+                    if (number[i] >= 48 && number[i] <= 57 || number[i] >= 65 && number[i] <= 70)
+                        q++;
+                }
+                if (q != number.length() - 1) {
+                    std::cout << "Неверный ввод. Вы использовали запрещенные символы\n";
+                    continue;
+                }
+                else
+                    flag1 = false;
+
+                std::cout << "Введите основание системы\n";
+                old = Inputint(2,16);
+                std::cout << "Введите число новой системы\n";
+                fresh = Inputint(2, 16);
+                reverse(number.begin(), number.end());
+                
+
+            } while (flag1);
+            for (int i = number.length() - 1; i >= 0; i--) {
+                if (number[i] == '0') in = 0;
+                if (number[i] == '1') in = 1;
+                if (number[i] == '2') in = 2;
+                if (number[i] == '3') in = 3;
+                if (number[i] == '4') in = 4;
+                if (number[i] == '5') in = 5;
+                if (number[i] == '6') in = 6;
+                if (number[i] == '7') in = 7;
+                if (number[i] == '8') in = 8;
+                if (number[i] == '9') in = 9;
+                if (number[i] == 'A') in = 10;
+                if (number[i] == 'B') in = 11;
+                if (number[i] == 'C') in = 12;
+                if (number[i] == 'D') in = 13;
+                if (number[i] == 'E') in = 14;
+                if (number[i] == 'F') in = 15;
+
+                if (in > flag) flag = in;
+
+                num = num + (in * pow(old, i));
+            }
+            if (flag < old) {
+                std::cout << "В десятеричной системе это будет:\n" << num<<std::endl;
+                cout << "В "<<fresh<<"СС это будет:\n";
+                other(num, fresh);
+                std::cout << std::endl;
+            }
+            
             break;
 
         }
@@ -1598,6 +1669,7 @@ int Euclidean_algorithm(int n1, int n2)
 }
 
 void algorithm() {
+    std::cout << "вы выбрали алгоритм Евклида, чтобы найти НОД, введите 2 числа \n";
     int a, b;
     cout << "Введите 1 число:\n";
     a = Inputint(-2147483648, 2147483647);
@@ -1607,7 +1679,8 @@ void algorithm() {
     cin.get();
 }
 
-void Sort() {
+void SortStalin() {
+    std::cout << "Вы выбрали сортировку Сталина \n";
     std::vector<int> l = { 1,2,3,5,4,6,4,8,9 };
     StalinSort(l);
     for (auto x : l) {
@@ -1615,7 +1688,9 @@ void Sort() {
 
     }
 }
-void Sieve_of_Eratosthenes(int a) {
+void Sieve_of_Eratosthenes() {
+    std::cout << "Введите число , чтобы узнать какие простые числа до него \n";
+    int a = Inputint(2, 2147483647);
     for (int i = 2; i < a; i++) {
                 if (i == 2 || i == 3 || i == 5 || i == 7) {
                     std::cout << i << std::endl;
@@ -1672,7 +1747,7 @@ int main() {
             break;
         }
         case '6': {
-            Sort();
+            SortStalin();
             break;
         }
         case '7': {
@@ -1680,8 +1755,7 @@ int main() {
             break;
         }
         case'8': {
-            int a = Inputint(0, 2147483647);
-            Sieve_of_Eratosthenes(a);
+            Sieve_of_Eratosthenes();
             break;
         }
         case '0': exit(0);
