@@ -4,6 +4,8 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <sstream>
+#include <algorithm>
 #define NOMINMAX
 #include <Windows.h>
 #define M_PI 3.14159265358979323846
@@ -1707,6 +1709,18 @@ void Sieve_of_Eratosthenes() {
                 std::cout << i << std::endl;
             }
 }
+int Balls() {
+    cout << endl;
+    long long n;
+    n = Inputint(0, INT_MAX);
+    long long* k = new long long[n];
+    k[0] = 0; k[1] = 1;
+    for (int i = 2; i <= n; i++) {
+        k[i] = (k[i - 1] + k[i - 2]) * (i - 1);
+    }
+    cout << k[n] << endl;
+    return 0;
+}
 int main() {
     setlocale(LC_ALL, "Russian");
     char q;
@@ -1720,6 +1734,7 @@ int main() {
         cout << "№6 - StalinSort \n";
         cout << "№7 - Euclidean_algorithm \n";
         cout << "№8 - Sieve_of_Eratosthenes \n";
+        cout << "№9 - Шарики \n";
         cout << "№0 - выйти из программы \n";
         cin >> q;
         switch (q) {
@@ -1756,6 +1771,10 @@ int main() {
         }
         case'8': {
             Sieve_of_Eratosthenes();
+            break;
+        }
+        case'9': {
+            Balls();
             break;
         }
         case '0': exit(0);
