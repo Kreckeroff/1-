@@ -1,0 +1,370 @@
+#include <iostream>
+#include <cmath>
+#include <string>
+#include <fstream>
+#include <vector>
+#include <sstream>
+#include <algorithm>
+#define NOMINMAX
+#include <Windows.h>
+#define M_PI 3.14159265358979323846
+
+using namespace std;
+char alphabet(int num){
+    char out[] = { '0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F' };
+    return out[num];
+}
+void other(int num, int fresh) {
+    if (num < fresh) {
+        std::cout << alphabet(num);
+        return;
+    }
+    other(num / fresh, fresh);
+    std::cout << alphabet(num % fresh);
+}
+
+/*
+int return1(float a) {
+return a;
+}
+*/
+
+//StalinSort
+template<class T>
+void StalinSort(std::vector<T>& L)
+{
+    auto it = L.begin();//1,2,3,5,4,6,4,8,9 
+    auto aux = it;
+    while (it != L.end())
+    {
+        if (*it < *aux)
+        {
+            it = L.erase(it);
+        }
+        else
+        {
+            aux = it;
+            it++;
+        }
+    }
+}
+double max_money(double** m, int col2, int row1) {
+    float tmp = 0;
+    float tmp1 = 0;
+    float tmp2 = 0;
+    for (int i = 1; i <= row1; i++) {
+        for (int j = 1; j <= col2;) {
+            tmp = m[i][j] - m[i][j + 1];
+            if (tmp > tmp1) {
+                tmp2 = tmp;
+
+            }
+            tmp1 = tmp;
+            break;
+        }
+    }
+    return tmp2;
+}
+double max_money_all(double** m, int col2, int row1) {
+    float tmp = 0;
+    float tmp1 = 0;
+    for (int i = 1; i <= row1; i++) {
+        for (int j = 1; j <= col2;) {
+            tmp = m[i][j];
+            tmp1 += tmp;
+            break;
+        }
+    }
+    return tmp1;
+}
+double max_clear_money_all(double** m, int col2, int row1) {
+    float tmp = 0;
+    float tmp1 = 0;
+    for (int i = 1; i <= row1; i++) {
+        for (int j = 1; j <= col2;) {
+            tmp = m[i][j] - m[i][j + 1];
+            tmp1 += tmp;
+            break;
+        }
+    }
+    return tmp1;
+}
+double max_commission_all(double** m, int col2, int row1) {
+    float tmp = 0;
+    float tmp1 = 0;
+    for (int i = 1; i <= row1; i++) {
+        for (int j = 2; j <= col2;) {
+            tmp = m[i][j];
+            tmp1 += tmp;
+            break;
+        }
+    }
+    return tmp1;
+}
+double max_commission(double** m, int col2, int row1) {
+    float tmp = 0;
+    float tmp1 = 0;
+    float tmp2 = 0;
+    for (int i = 1; i <= row1; i++) {
+        for (int j = 2; j <= col2;) {
+            tmp = m[i][j];
+            if (tmp > tmp1) {
+                tmp2 = tmp;
+
+            }
+            tmp1 = tmp;
+            break;
+        }
+    }
+    return tmp2;
+}
+double min_commission(double** m, int col2, int row1) {
+    float tmp = 0;
+    float tmp1 = 10000000;
+    float tmp2 = 0;
+    for (int i = 2; i - 1<= row1; i++) {
+        for (int j = 2; j <= col2;) {
+            tmp = m[i-1][j];
+            if (tmp < tmp1) {
+                tmp2 = tmp;
+
+            }
+            tmp1 = tmp;
+            break;
+        }
+    }
+    return tmp2;
+}
+double min_money(double** m, int col2, int row1, float maxmoney) {
+    float tmp2 = 0;
+    for (int i = 1; i <= row1; row1--) {
+        for (int j = 1; j <= col2;) {
+            float tmp = m[row1][j] - m[row1][j + 1];
+            if (tmp < maxmoney) {
+                tmp2 = tmp;
+            }
+            maxmoney = tmp;
+            break;
+        }
+    }
+    return tmp2;
+}
+double comparisonmoney(double** m, int col2, int row1, float tmp2) {
+    float tmp = 0;
+    float tmp1 = 0;
+    for (int i = 1; i <= row1; i++) {
+        for (int j = 1; j <= col2;) {
+            tmp = m[i][j] - m[i][j + 1];
+            if (tmp2 == tmp) {
+                tmp1 = i;
+                return tmp1;
+            }
+            break;
+        }
+    }
+}
+double comparisoncommission(double** m, int col2, int row1, float tmp2) {
+    float tmp = 0;
+    float tmp1 = 0;
+    for (int i = 1; i <= row1; i++) {
+        for (int j = 2; j <= col2;) {
+            tmp = m[i][j];
+            if (tmp2 == tmp) {
+                tmp1 = i;
+                return tmp1;
+            }
+            break;
+        }
+    }
+}
+int Inputint(int m, int M) {
+    for (;;) {
+        float valuea;
+        std::cout << "Введите число. \n";
+        if ((std::cin >> valuea).good() && (m <= valuea) && (valuea <= M) && (floor(valuea) == valuea)) {
+            return valuea;
+            break;
+        }
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cout << "Неверный ввод, повторите. \n";
+
+        }
+        else {
+            std::cout << "Число вне допустимого диапазона значений. Повторите ввод. \n";
+
+        }
+        std::cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    }
+}
+
+//Функция ввода float переменной с клавиатуры с проверкой на введенные неккоректные символы с заданным диапазоном значений
+float Inputfloat(int m, int M) {
+    for (;;) {
+        float valuea;
+        cout << "Введите число. \n";
+        if ((cin >> valuea).good() && (m <= valuea) && (valuea <= M)) {
+            return valuea;
+            break;
+        }
+        if (cin.fail()) {
+            cin.clear();
+            cout << "Неверный ввод, повторите. \n";
+
+        }
+        else {
+            cout << "Число вне допустимого диапазона значений. Повторите ввод. \n";
+
+        }
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    }
+}
+int row1,row2,col1,col2;
+            double** m, ** m1, ** m2;
+                std::cout << "запишите количество разновидностей товаров для продавцов от 1 до 10. \n";
+                col1 = Inputint(1, 10);//может быть от 1 до 10 продавцов
+                std::cout << "запишите количество продавцов  от 1 до 10. \n";
+                row1 = Inputint(1, 10);//может быть от 1 до 10 товаров
+                bool mas1 = true;
+                bool mas2 = true;
+                int check1 = 0;
+                col2 = 2;
+                row2 = col1;
+            do {//Ввод 1 матрицы
+                int check = 0;
+                m1 = new double* [row1];
+                std::cout << "Введите 1 матрицу. \n";
+                for (int i = 1; i <= row1; i++) {
+                    m1[i] = new double[col1];
+                    std::cout << "Введите количество товаров для " << i << " продавца. \n";
+                    for (int j = 1; j <= col1;) {
+                        std::cout << "m1[" << i << "][" << j << "]= ";
+                        std::cout << "Введите количество товара типа (" << j << ") для " << i << " продавца. \n";
+                        m1[i][j] = Inputfloat(0, 2147483647);
+                        j++;
+                    }
+
+                }
+                for (int l = 1; l <= row1;) {
+                    check1 = 0;
+                    for (int r = 1; r <= col1;) {
+                        if (m1[l][r] == 0)
+                            check1++;
+                        r++;
+                    }
+                    if (check1 == col1) {
+                        std::cout << "Вы ввели 0 товаров для " << l << " продавца! Попробуйте еще раз. \n";
+                        std::cout << "Хотите продолжить ? \n1 = изменить количество \n0 = продолжить без изменений \n";
+                        int n = Inputint(0, 1);
+                        if (n == 1) {
+                            mas1 = true;
+                            check++;
+                        }
+                        else
+                            mas1 = false;
+
+                    }
+                    else
+                        mas1 = false;
+                    l++;
+                }
+                if (check > 0)
+                    mas1 = true;
+            } while (mas1);//закончили ввод 1 матрицы
+            std::cout << "Матрица продавца-(ов) к товару: \n";
+            for(int i = 1;i <= row1;i++) {//вывод на экран 1 матрицы
+                std::cout << "|";
+                for(int j = 1;j <=col1;j++) {
+                    std::cout<<m1[i][j]<<" ";
+                }
+                std::cout << "|";
+                std::cout<<std::endl;
+            }
+            do {//ввод 2 матрицы в программу
+                check1 = 0;
+                m2 = new double* [row2];
+                std::cout << "Введите 2 матрицу. \n";
+                for (int i = 1; i <= row2; i++) {
+                    std::cout << "Введите цену/комиссию для " << i << " товара. \n";
+                    m2[i] = new double[col2];
+                    for (int j = 1; j <= col2;) {
+                        std::cout << "m2[" << i << "][" << j << "]= ";
+                        m2[i][j] = Inputfloat(0, 2147483647);
+                        j++;
+                    }
+
+                }
+                for (int l = 1; l <= row2;) {
+                    if (m2[l][1] == 0) {//проверка на ценник = 0
+                        std::cout << "Цена не может быть равна 0 для " << l << " товара! Попробуйте еще раз. \n";
+                        check1++;
+                    }
+                    l++;
+                }
+                for (int l = 1; l <= row2;) {
+                    if (m2[l][1] - m2[l][2] < 0) {//проверка на то что комиссия больше чем цена
+                        std::cout << "комиссия не может быть больше цены у "<<l<<" товара! Попробуйте еще раз. \n";
+                        check1++;
+                    }
+                    l++;
+                }
+                if (check1 == 0)
+                    mas2 = false;
+            } while (mas2);
+            std::cout << "Матрица цены к комиссии: \n";//вывод 2 матрицы
+            for(int i = 1;i <= row2;i++) {
+                std::cout << "|";
+                for(int j = 1;j <=col2;j++) {
+                    std::cout<<m2[i][j]<<" ";
+                }
+                std::cout << "|";
+                std::cout<<std::endl;
+                    
+            }
+            m = new double* [row1];//перемножение матрицы
+            for (int i = 1; i <= row1; i++)
+            {
+                m[i] = new double[col2];
+                for (int j = 1; j <= col2; j++)
+                {
+                    m[i][j] = 0;
+                    for (int k = 1; k <= col1; k++)
+                        m[i][j] += m1[i][k] * m2[k][j];
+                }
+            }
+            std::cout << "Прибыль/комиссия \n";//вывод перемноженной матрицы
+            for (int i = 1; i <= row1; i++) {
+                std::cout << "|";
+                for (int j = 1; j <= col2; j++) {
+                    std::cout << m[i][j] << " ";
+                }
+                std::cout << "|";
+                std::cout << std::endl;
+            }
+            std::cout << "Вывод работы программы: \n";
+            for (int r = 1; r <= row1;r++) {
+                if (m[r][1] == 0)
+                    std::cout << "У " << r << " продавца указано 0 товаров. \n";
+            }
+            float maxmoney = max_money(m, col2, row1);
+            int personal_max_money = comparisonmoney(m, col2, row1, maxmoney);
+            double minmoney = min_money(m, col2, row1, maxmoney);
+            int personal_min_money = comparisonmoney(m, col2, row1, minmoney);
+            float maxcommission = max_commission(m, col2, row1);
+            int personal_max_commission = comparisoncommission(m, col2, row1, maxcommission);
+            float mincommission = min_commission(m, col2, row1);
+            int personal_min_commission = comparisoncommission(m, col2, row1, mincommission);
+            float maxmoneyall = max_money_all(m, col2, row1);
+            float maxclearmoneyall = max_clear_money_all(m, col2, row1);
+            float maxcommissionall = max_commission_all(m, col2, row1);
+            std::cout <<"Наибольшая выручка будет у "<<personal_max_money<<" продавца. Выручка = "<<maxmoney<<std::endl;
+            std::cout <<"Наименьшая выручка будет у " << personal_min_money << " продавца. Выручка = " << minmoney << std::endl;
+            std::cout << "Наибольшая комиссия будет у " << personal_max_commission << " продавца. Комиссия = " << maxcommission << std::endl;
+            std::cout << "Наименьшая комиссия будет у " << personal_min_commission << " продавца. Комиссия = " << mincommission << std::endl;
+            std::cout << "Общая чистая выручка будет = " << maxclearmoneyall << std::endl;
+            std::cout << "Общая комиссия будет = " << maxcommissionall << std::endl;
+            std::cout << "Общая выручка будет = " << maxmoneyall << std::endl;
+            }
+            
